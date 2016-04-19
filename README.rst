@@ -11,7 +11,7 @@ Overview
       - |docs|
     * - tests
       - | |travis|
-        | |coveralls|
+        | |codecov|
         | |landscape|
     * - package
       - |version| |downloads| |wheel| |supported-versions| |supported-implementations|
@@ -20,16 +20,16 @@ Overview
     :target: https://readthedocs.org/projects/django-suit-dashboard
     :alt: Documentation Status
 
-.. |travis| image:: https://travis-ci.org/pawamoy/django-suit-dashboard.svg?branch=master
+.. |travis| image:: https://travis-ci.org/Pawamoy/django-suit-dashboard.svg?branch=master
     :alt: Travis-CI Build Status
-    :target: https://travis-ci.org/pawamoy/django-suit-dashboard
+    :target: https://travis-ci.org/Pawamoy/django-suit-dashboard
 
-.. |coveralls| image:: https://coveralls.io/repos/pawamoy/django-suit-dashboard/badge.svg?branch=master&service=github
+.. |codecov| image:: https://codecov.io/github/Pawamoy/django-suit-dashboard/coverage.svg?branch=master
     :alt: Coverage Status
-    :target: https://coveralls.io/r/pawamoy/django-suit-dashboard
+    :target: https://codecov.io/github/Pawamoy/django-suit-dashboard
 
-.. |landscape| image:: https://landscape.io/github/pawamoy/django-suit-dashboard/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/pawamoy/django-suit-dashboard/master
+.. |landscape| image:: https://landscape.io/github/Pawamoy/django-suit-dashboard/master/landscape.svg?style=flat
+    :target: https://landscape.io/github/Pawamoy/django-suit-dashboard/master
     :alt: Code Quality Status
 
 .. |version| image:: https://img.shields.io/pypi/v/django-suit-dashboard.svg?style=flat

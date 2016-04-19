@@ -1,7 +1,7 @@
 # This file exists so you can easily regenerate your project.
 #
 # `cookiepatcher` is a convenient shim around `cookiecutter`
-# for regenerating projects (it will generate a .cookiecutterrc 
+# for regenerating projects (it will generate a .cookiecutterrc
 # automatically for any template). To use it:
 #
 #    pip install cookiepatcher
@@ -22,14 +22,14 @@ default_context:
     c_extension_support:       'no'
     codacy:                    'no'
     codeclimate:               'no'
-    codecov:                   'no'
+    codecov:                   'yes'
     command_line_interface:    'no'
     command_line_interface_bin_name: 'django-suit-dashboard'
-    coveralls:                 'yes'
+    coveralls:                 'no'
     distribution_name:         'django-suit-dashboard'
     email:                     'timothee.mazzucotelli@gmail.com'
     full_name:                 'Timothee Mazzucotelli'
-    github_username:           'pawamoy'
+    github_username:           'Pawamoy'
     landscape:                 'yes'
     license:                   'MPL 2.0'
     package_name:              'suit_dashboard'

@@ -33,7 +33,7 @@ setup(
     ),
     author='Timothee Mazzucotelli',
     author_email='timothee.mazzucotelli@gmail.com',
-    url='https://github.com/pawamoy/django-suit-dashboard',
+    url='https://github.com/Pawamoy/django-suit-dashboard',
     packages=find_packages('src'),
     package_dir={'': 'src'},
     py_modules=[splitext(basename(path))[0] for path in glob('src/*.py')],

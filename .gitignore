@@ -23,6 +23,7 @@ lib
 lib64
 venv*/
 pyvenv*/
+wheelhouse
 
 # Installer logs
 pip-log.txt
