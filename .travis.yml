@@ -18,6 +18,7 @@ before_install:
   - python --version
   - uname -a
   - lsb_release -a
+  - pip install codecov
 install:
   - pip install tox
   - virtualenv --version
@@ -38,3 +39,5 @@ notifications:
   email:
     on_success: never
     on_failure: always
+after_success:
+  - codecov

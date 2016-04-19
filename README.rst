@@ -16,8 +16,8 @@ Overview
     * - package
       - |version| |downloads| |wheel| |supported-versions| |supported-implementations|
 
-.. |docs| image:: https://readthedocs.org/projects/django-suit-dashboard/badge/?style=flat
-    :target: https://readthedocs.org/projects/django-suit-dashboard
+.. |docs| image:: https://readthedocs.org/projects/django-suit-dashboard/badge/?version=latest
+    :target: https://django-suit-dashboard.readthedocs.org/en/latest/
     :alt: Documentation Status
 
 .. |travis| image:: https://travis-ci.org/Pawamoy/django-suit-dashboard.svg?branch=master
