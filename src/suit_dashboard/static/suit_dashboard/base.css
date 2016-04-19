@@ -1,3 +1,7 @@
+.dashboard-row {
+   margin-left: 0;
+ }
+
 .dashboard-row .dashboard-col-1 {
   width: 8.333%;
 }
