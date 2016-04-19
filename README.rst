@@ -1,20 +1,18 @@
-========
-Overview
-========
+=====================
+Django Suit Dashboard
+=====================
 
 .. start-badges
 
-.. list-table::
-    :stub-columns: 1
+|travis|
+|docs|
+|codecov|
+|landscape|
+|version|
+|wheel|
 
-    * - docs
-      - |docs|
-    * - tests
-      - | |travis|
-        | |codecov|
-        | |landscape|
-    * - package
-      - |version| |downloads| |wheel| |supported-versions| |supported-implementations|
+.. |supported-versions|
+.. |supported-implementations|
 
 .. |docs| image:: https://readthedocs.org/projects/django-suit-dashboard/badge/?version=latest
     :target: https://django-suit-dashboard.readthedocs.org/en/latest/
