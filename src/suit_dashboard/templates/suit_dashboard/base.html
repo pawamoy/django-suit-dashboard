@@ -1,0 +1,35 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+
+{% block title %}
+  Suit Dashboard
+{% endblock %}
+
+{#{% block breadcrumbs %}{% endblock %}#}
+{#{% block sidebar %}{% endblock %}#}
+{#{% block header_time %}{% endblock %}#}
+
+{% block extrastyle %}
+  <link href="{% static 'suit_dashboard/base.css' %}" rel="stylesheet">
+  {% block dashboard_css %}{% endblock %}
+{% endblock %}
+
+{% block extrajs %}
+  {% block dashboard_js %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+  {% block dashboard_highcharts_js %}
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+  {% endblock %}
+  <div class="dashboard-row">
+    <div class="suit-column dashboard-col-12 text-center">
+      <h1>{% block dashboard_title %}{% trans "Suit Dashboard" %}{% endblock %}</h1>
+    </div>
+  </div>
+  {% for row in dashboard_grid.rows %}
+    {% include "suit_dashboard/row.html" %}
+  {% endfor %}
+{% endblock %}
