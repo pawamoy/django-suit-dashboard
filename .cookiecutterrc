@@ -1,0 +1,48 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc 
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:ionelmc/cookiecutter-pylibrary project-path
+#
+# See:
+#    https://pypi.python.org/pypi/cookiecutter
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=project-path/.cookiecutterrc gh:ionelmc/cookiecutter-pylibrary
+
+default_context:
+
+    appveyor:                  'no'
+    bin_name:                  'nameless'
+    c_extension_cython:        'no'
+    c_extension_optional:      'no'
+    c_extension_support:       'no'
+    codacy:                    'no'
+    codeclimate:               'no'
+    codecov:                   'no'
+    command_line_interface:    'no'
+    coveralls:                 'yes'
+    distribution_name:         'django-suit-dashboard'
+    email:                     'timothee.mazzucotelli@gmail.com'
+    full_name:                 'Timoth\xe9e Mazzucotelli'
+    github_username:           'pawamoy'
+    landscape:                 'yes'
+    license:                   'MPL 2.0'
+    package_name:              'suit_dashboard'
+    project_name:              'Django Suit Dashboard'
+    project_short_description: 'Create a dashboard for Django admin with django-suit'
+    release_date:              'today'
+    repo_name:                 'django-suit-dashboard'
+    requiresio:                'no'
+    scrutinizer:               'no'
+    sphinx_theme:              'readthedocs'
+    test_matrix_configurator:  'no'
+    test_runner:               'pytest'
+    travis:                    'yes'
+    version:                   '0.1.0'
+    website:                   'http://pawamoy.github.io/'
+    year:                      'now'
