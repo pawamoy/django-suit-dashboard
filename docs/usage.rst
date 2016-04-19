@@ -16,7 +16,7 @@ And replace::
 
 by::
 
-	'django.contrib.admin.apps.SimpleAdminConfig'.
+	'django.contrib.admin.apps.SimpleAdminConfig'
 
 You must of course have `django-suit`_ installed since it will only work with Suit.
 
@@ -43,15 +43,15 @@ This custom admin site will contain your URL list:
 
 
 	class DashboardSite(AdminSite):
-	"""A Django AdminSite to allow registering custom dashboard views."""
-	def get_urls(self):
-		urls = super(DashboardSite, self).get_urls()
-		custom_urls = [
-				url(r'^$', self.admin_view(dashboard_main_view), name="index")
-		]
+		"""A Django AdminSite to allow registering custom dashboard views."""
+		def get_urls(self):
+			urls = super(DashboardSite, self).get_urls()
+			custom_urls = [
+					url(r'^$', self.admin_view(dashboard_main_view), name="index")
+			]
 
-		del urls[0]
-		return custom_urls + urls
+			del urls[0]
+			return custom_urls + urls
 
 You can already use this admin site in your main urls.py:
 
@@ -75,12 +75,12 @@ But also you must create the main view, imported by the previous module:
 
 
 	def dashboard_main_view(request):
-	  template_name = 'dashboard/main.html'
-	  context = {
-	      'dashboard_grid': Grid([])
-	  }
+		template_name = 'dashboard/main.html'
+		context = {
+			'dashboard_grid': Grid([])
+		}
 
-	  return render(request, template_name, context)
+		return render(request, template_name, context)
 
 We will later see how to use Grid, Row and Column classes.
 
@@ -92,24 +92,24 @@ And finally, create the main.html template in a location where it will be found 
 	{% load i18n admin_static %}
 
 	{% block title %}
-	  Title in browser tab
+		Title in browser tab
 	{% endblock %}
 
 	{% block dashboard_title %}
-	  Title on top of dashboard
+		Title on top of dashboard
 	{% endblock %}
 
 	{# Remove the breadcrumbs #}
 	{% block breadcrumbs %}{% endblock %}
 
 	{% block dashboard_css %}
-	  <link href="{% static 'dashboard/your_main.css' %}" rel="stylesheet" media="all">
+		<link href="{% static 'dashboard/your_main.css' %}" rel="stylesheet" media="all">
 	{% endblock %}
 
 	{# Load local Highcharts, default from Highcharts' CDN #}
 	{% block dashboard_highcharts_js %}
-	  <script src="{% static "path/to/your/highcharts/highcharts.js" %}"></script>
-	  <script src="{% static "path/to/your/highcharts/highcharts-more.js" %}"></script>
+		<script src="{% static "path/to/your/highcharts/highcharts.js" %}"></script>
+		<script src="{% static "path/to/your/highcharts/highcharts-more.js" %}"></script>
 	{% endblock %}
 
 
@@ -137,40 +137,40 @@ just to see the result:
 		context = {
 			'dashboard_grid': Grid([
 				Row([
-				    Column([
-				        Widget(title='Row 1 column 1 widget 1'),
-				        Widget(title='Row 1 column 1 widget 2')
-				    ], width=6),
-				    Column([
-				        Widget(title='Row 1 column 2 widget 1',
-				               description=', '.join([str(_) for _ in range(5, 15)])),
-				        Widget(title='Row 1 column 2 widget 2')
-				    ], width=6),
+					Column([
+						Widget(title='Row 1 column 1 widget 1'),
+						Widget(title='Row 1 column 1 widget 2')
+					], width=6),
+					Column([
+						Widget(title='Row 1 column 2 widget 1',
+									 description=', '.join([str(_) for _ in range(5, 15)])),
+						Widget(title='Row 1 column 2 widget 2')
+					], width=6),
 				]),
 				Row([
-				    Column([
-				        Widget(title='Row 2 column 1 widget 1'),
-				        Widget(title='Row 2 column 1 widget 2')
-				    ], width=3),
-				    Column([
-				        Widget(title='Row 2 column 2 widget 1'),
-				        Widget(title='Row 2 column 2 widget 2',
-				               description=', '.join([str(_) for _ in range(5, 200)]))
-				    ], width=5),
-				    Column([
-				        Row([
-				            Column([
-				                Widget(title='R2 C3 R1 C1 W1'),
-				                Widget(title='R2 C3 R1 C1 W2')
-				            ], width=12)
-				        ]),
-				        Row([
-				            Column([
-				                Widget(title='R2 C3 R2 C1 W1'),
-				                Widget(title='R2 C3 R2 C1 W2')
-				            ], width=12)
-				        ])
-				    ], width=4),
+					Column([
+						Widget(title='Row 2 column 1 widget 1'),
+						Widget(title='Row 2 column 1 widget 2')
+					], width=3),
+					Column([
+						Widget(title='Row 2 column 2 widget 1'),
+						Widget(title='Row 2 column 2 widget 2',
+									 description=', '.join([str(_) for _ in range(5, 200)]))
+					], width=5),
+					Column([
+						Row([
+							Column([
+								Widget(title='R2 C3 R1 C1 W1'),
+								Widget(title='R2 C3 R1 C1 W2')
+							], width=12)
+						]),
+						Row([
+							Column([
+								Widget(title='R2 C3 R2 C1 W1'),
+								Widget(title='R2 C3 R2 C1 W2')
+							], width=12)
+						])
+					], width=4),
 				])
 			])
 		}
@@ -214,18 +214,18 @@ Here is an example of Widget showing information about the machine.
 				WidgetGroup(
 					'sysspec', 'System specifications',
 					[
-					    WidgetItem('hostname', 'Hostname', platform.node()),
-					    WidgetItem('system', 'System', '%s, %s, %s' % (
-					        platform.system(),
-					        ' '.join(platform.linux_distribution()),
-					        platform.release())),
-					    WidgetItem('architecture', 'Architecture', ' '.join(platform.architecture())),
-					    WidgetItem('processor', 'Processor', platform.processor()),
-					    WidgetItem('python_version', 'Python version', platform.python_version())
+							WidgetItem('hostname', 'Hostname', platform.node()),
+							WidgetItem('system', 'System', '%s, %s, %s' % (
+									platform.system(),
+									' '.join(platform.linux_distribution()),
+									platform.release())),
+							WidgetItem('architecture', 'Architecture', ' '.join(platform.architecture())),
+							WidgetItem('processor', 'Processor', platform.processor()),
+							WidgetItem('python_version', 'Python version', platform.python_version())
 					],
 					display=WidgetGroup.AS_TABLE,
 					classes='table-bordered table-condensed '
-					        'table-hover table-striped'
+									'table-hover table-striped'
 				)
 			]
 
