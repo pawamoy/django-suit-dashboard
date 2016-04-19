@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-from __future__ import absolute_import, print_function
+from __future__ import absolute_import
+from __future__ import print_function
 
 import io
 import re
@@ -25,12 +26,12 @@ setup(
     name='django-suit-dashboard',
     version='0.1.0',
     license='MPL 2.0',
-    description='Create a dashboard for Django admin with django-suit',
+    description='Create a dashboard within django-suit admin interface',
     long_description='%s\n%s' % (
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
     ),
-    author='Timoth\xe9e Mazzucotelli',
+    author='Timothee Mazzucotelli',
     author_email='timothee.mazzucotelli@gmail.com',
     url='https://github.com/pawamoy/django-suit-dashboard',
     packages=find_packages('src'),
@@ -41,7 +42,9 @@ setup(
     classifiers=[
         # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers','License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)','Operating System :: Unix',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
+        'Operating System :: Unix',
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
@@ -52,6 +55,10 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
+        # uncomment if you test on these interpreters:
+        # 'Programming Language :: Python :: Implementation :: IronPython',
+        # 'Programming Language :: Python :: Implementation :: Jython',
+        # 'Programming Language :: Python :: Implementation :: Stackless',
         'Topic :: Utilities',
     ],
     keywords=[

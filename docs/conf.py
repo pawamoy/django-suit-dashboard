@@ -7,12 +7,13 @@ import os
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
-    'sphinx.ext.todo',
     'sphinx.ext.coverage',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',
+    'sphinx.ext.doctest',
     'sphinx.ext.extlinks',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
 ]
 if os.getenv('SPELLCHECK'):
     extensions += 'sphinxcontrib.spelling',
@@ -23,7 +24,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 project = u'Django Suit Dashboard'
 year = '2016'
-author = u'Timoth\xe9e Mazzucotelli'
+author = u'Timothee Mazzucotelli'
 copyright = '{0}, {1}'.format(year, author)
 version = release = u'0.1.0'
 
@@ -36,14 +37,12 @@ extlinks = {
 # on_rtd is whether we are on readthedocs.org
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
+if not on_rtd:  # only set the theme if we're building docs locally
     html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 html_use_smartypants = True
 html_last_updated_fmt = '%b %d, %Y'
-html_split_index = True
+html_split_index = False
 html_sidebars = {
    '**': ['searchbox.html', 'globaltoc.html', 'sourcelink.html'],
 }

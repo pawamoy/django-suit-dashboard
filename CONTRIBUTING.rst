@@ -37,7 +37,8 @@ Development
 
 To set up `django-suit-dashboard` for local development:
 
-1. `Fork django-suit-dashboard on GitHub <https://github.com/pawamoy/django-suit-dashboard/fork>`_.
+1. Fork `django-suit-dashboard <https://github.com/pawamoy/django-suit-dashboard>`_
+   (look for the "Fork" button).
 2. Clone your fork locally::
 
     git clone git@github.com:your_name_here/django-suit-dashboard.git

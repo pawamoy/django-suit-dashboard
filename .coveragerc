@@ -1,9 +1,11 @@
 [paths]
-source = src
+source =
+   src/suit_dashboard
+   */site-packages/suit_dashboard
 
 [run]
 branch = True
-source = src
+source = suit_dashboard
 parallel = true
 
 [report]

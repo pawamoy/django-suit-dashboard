@@ -7,8 +7,9 @@ env:
     - SEGFAULT_SIGNALS=all
   matrix:
     - TOXENV=check
+    - TOXENV=docs
 {% for env in tox_environments %}{{ '' }}
-    - TOXENV={{ env }}{% if 'cover' in env %},coveralls{% endif -%}
+    - TOXENV={{ env }},coveralls
 {% endfor %}
 
 before_install:

@@ -7,17 +7,13 @@ env:
     - SEGFAULT_SIGNALS=all
   matrix:
     - TOXENV=check
+    - TOXENV=docs
 
-    - TOXENV=py27-cover,coveralls
-    - TOXENV=py27-nocov
-    - TOXENV=py33-cover,coveralls
-    - TOXENV=py33-nocov
-    - TOXENV=py34-cover,coveralls
-    - TOXENV=py34-nocov
-    - TOXENV=py35-cover,coveralls
-    - TOXENV=py35-nocov
-    - TOXENV=pypy-cover,coveralls
-    - TOXENV=pypy-nocov
+    - TOXENV=py27,coveralls
+    - TOXENV=py33,coveralls
+    - TOXENV=py34,coveralls
+    - TOXENV=py35,coveralls
+    - TOXENV=pypy,coveralls
 before_install:
   - python --version
   - uname -a
