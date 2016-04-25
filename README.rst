@@ -55,6 +55,12 @@ Django Suit Dashboard
 
 Create a dashboard within django-suit admin interface
 
+Screenshot
+==========
+
+.. image:: https://cloud.githubusercontent.com/assets/3999221/14685134/8cde04be-0733-11e6-8eda-b59f2e2fa6c3.png
+    :alt: Screenshot
+
 License
 =======
 
