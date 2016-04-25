@@ -15,7 +15,7 @@
           <table class="table {{ elem.classes }}">
             <tbody>
               {% for item in elem.items %}
-                <tr>
+                <tr id="{{ item.id }}">
                   <td class="widget-item-name">{{ item.name }}</td>
                   <td class="widget-item-value">{{ item.value }}</td>
                 </tr>

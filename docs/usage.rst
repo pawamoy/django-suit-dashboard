@@ -86,7 +86,7 @@ We will later see how to use Grid, Row and Column classes.
 
 And finally, create the main.html template in a location where it will be found by Django:
 
-.. code:: django+html
+.. code:: html+django
 
   {% extends "suit_dashboard/base.html" %}
   {% load i18n admin_static %}
