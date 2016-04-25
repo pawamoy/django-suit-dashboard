@@ -8,8 +8,8 @@
     </p>
   {% endif %}
   {% for elem in widget.context %}
-    <h2>{{ elem.name }}</h2>
     {% if elem.type == 'group' %}
+      <h2>{{ elem.name }}</h2>
       {% if elem.display == 'table' %}
         <div id="{{ elem.id }}" class="widget-table">
           <table class="table {{ elem.classes }}">
