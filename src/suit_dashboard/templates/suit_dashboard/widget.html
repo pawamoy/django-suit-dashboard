@@ -7,52 +7,76 @@
       {{ widget.description|linebreaksbr }}
     </p>
   {% endif %}
-  {% for elem in widget.context %}
-    {% if elem.type == 'group' %}
-      <h2>{{ elem.name }}</h2>
-      {% if elem.display == 'table' %}
-        <div id="{{ elem.id }}" class="widget-table">
-          <table class="table {{ elem.classes }}">
-            <tbody>
-              {% for item in elem.items %}
-                <tr id="{{ item.id }}">
-                  <td class="widget-item-name">{{ item.name }}</td>
-                  <td class="widget-item-value">{{ item.value }}</td>
-                </tr>
+  {% if widget.template %}
+    {% include widget.template %}
+  {% else %}
+    {% for elem in widget.context %}
+      {% if elem.type == 'group' %}
+        <h2>{{ elem.name }}</h2>
+        {% if elem.display == 'table' %}
+          <div id="{{ elem.id }}" class="widget-table">
+            <table class="table {{ elem.classes }}">
+              <tbody>
+                {% for item in elem.items %}
+                  <tr id="{{ item.id }}" class="widget-item {{ item.classes }}">
+                    <td class="widget-item-name">{{ item.name }}</td>
+                    {% for value in item.value %}
+                      <td class="widget-item-value">{{ value|linebreaksbr }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% elif elem.display == 'list' %}
+          <div class="widget-list">
+            <ul class="list {{ elem.classes }}">
+                {% for item in elem.items %}
+                  {% if item.value|length == 1 %}
+                    <li><span class="widget-item-name">{{ item.name }}</span> <span class="widget-item-value">{{ item.value.0|linebreaksbr }}</span></li>
+                  {% else %}
+                    <li class="widget-item-name">{{ item.name }}</li>
+                    <li><ul>
+                      {% for value in item.value %}
+                        <li class="widget-item-value">{{ value|linebreaksbr }}</li>
+                      {% endfor %}
+                    </ul></li>
+                  {% endif %}
+                {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% elif elem.type == 'item' %}
+        <div class="widget-item {{ elem.classes }}">
+          {% if elem.is_chart %}
+            {% for value in elem.value %}
+              <div id="{% if widget.id %}{{ widget.id }}-{% endif %}{{ elem.id }}-{{ forloop.counter }}"></div>
+              <script>
+                var dataset = {{ value|safe }};
+                try {
+                  dataset.tooltip.formatter = new Function(dataset.tooltip.formatter);
+                } catch (err) {}
+                try {
+                  dataset.plotOptions.pie.dataLabels.style.color = new Function(dataset.plotOptions.pie.dataLabels.style.color);
+                } catch (err) {}
+                try {
+                  dataset.yAxis.labels.formatter = new Function(dataset.yAxis.labels.formatter);
+                } catch (err) {}
+                $('#{% if widget.id %}{{ widget.id }}-{% endif %}{{ elem.id }}-{{ forloop.counter }}').highcharts(dataset);
+              </script>
+            {% endfor %}
+          {% else %}
+            {% if elem.value|length == 1 %}
+              <p><span class="widget-item-name">{{ elem.name }}</span> <span class="widget-item-value">{{ elem.value.0|linebreaksbr }}</span></p>
+            {% else %}
+              <p class="widget-item-name">{{ elem.name }}</p>
+              {% for value in item.value %}
+                <p class="widget-item-name">{{ value|linebreaksbr }}</p>
               {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      {% elif elem.display == 'list' %}
-        <div class="widget-list">
-          <ul class="list {{ elem.classes }}">
-              {% for item in elem.items %}
-                <li><span class="widget-item-name">{{ item.name }}</span> <span class="widget-item-value">{{ item.value }}</span></li>
-              {% endfor %}
-          </ul>
+            {% endif %}
+          {% endif %}
         </div>
       {% endif %}
-    {% elif elem.type == 'item' %}
-      <div class="widget-item">
-        {% if elem.is_chart %}
-          <div id="{% if widget.id %}{{ widget.id }}-{% endif %}{{ elem.id }}"></div>
-          <script>
-            var dataset = {{ elem.value|safe }};
-            try {
-              dataset.tooltip.formatter = new Function(dataset.tooltip.formatter);
-            } catch (err) {}
-            try {
-              dataset.plotOptions.pie.dataLabels.style.color = new Function(dataset.plotOptions.pie.dataLabels.style.color);
-            } catch (err) {}
-            try {
-              dataset.yAxis.labels.formatter = new Function(dataset.yAxis.labels.formatter);
-            } catch (err) {}
-            $('#{% if widget.id %}{{ widget.id }}-{% endif %}{{ elem.id }}').highcharts(dataset);
-          </script>
-        {% else %}
-          <p><span class="widget-item-name">{{ elem.name }}</span> <span class="widget-item-value">{{ elem.value }}</span></p>
-        {% endif %}
-      </div>
-    {% endif %}
-  {% endfor %}
-    </div>
+    {% endfor %}
+  {% endif %}
+</div>
