@@ -47,10 +47,11 @@
           </div>
         {% endif %}
       {% elif elem.type == 'item' %}
-        <div class="widget-item {{ elem.classes }}">
+        <div id="{{ elem.id }}" class="widget-item {{ elem.classes }}">
           {% if elem.is_chart %}
+            <h2 class="widget-item-name">{{ elem.name }}</h2>
             {% for value in elem.value %}
-              <div id="{% if widget.id %}{{ widget.id }}-{% endif %}{{ elem.id }}-{{ forloop.counter }}"></div>
+              <div id="{% if widget.id %}{{ widget.id }}-{% endif %}{{ elem.id }}-{{ forloop.counter }}" class="widget-item-value"></div>
               <script>
                 var dataset = {{ value|safe }};
                 try {
@@ -71,7 +72,7 @@
             {% else %}
               <p class="widget-item-name">{{ elem.name }}</p>
               {% for value in item.value %}
-                <p class="widget-item-name">{{ value|linebreaksbr }}</p>
+                <p class="widget-item-value">{{ value|linebreaksbr }}</p>
               {% endfor %}
             {% endif %}
           {% endif %}

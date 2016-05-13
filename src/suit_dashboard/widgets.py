@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 class Widget(object):
     def __init__(self, id=None, title=None, description=None,
-                 context=None, template=None):
+                 context=None, template=None, **kwargs):
         if context:
             if not (isinstance(context, list) or isinstance(context, tuple)):
                 raise AttributeError('Widget context attribute '
@@ -17,6 +17,9 @@ class Widget(object):
             self.context = context
         else:
             self.context = self.get_context()
+
+        if isinstance(self.context, dict):
+            self.context.update(kwargs)
 
         if id:
             self.id = id
@@ -50,7 +53,7 @@ class Widget(object):
         return ''
 
     def get_context(self):
-        return []
+        return {}
 
 
 class WidgetGroup(object):
