@@ -80,4 +80,3 @@ class WidgetItem(object):
             self.value = value
         self.is_chart = is_chart
         self.classes = classes
-
