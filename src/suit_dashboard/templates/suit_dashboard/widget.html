@@ -55,14 +55,33 @@
               <script>
                 var dataset = {{ value|safe }};
                 try {
-                  dataset.tooltip.formatter = new Function(dataset.tooltip.formatter);
-                } catch (err) {}
+                  if (dataset.tooltip.formatter) {
+                    dataset.tooltip.formatter = new Function(dataset.tooltip.formatter);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
                 try {
-                  dataset.plotOptions.pie.dataLabels.style.color = new Function(dataset.plotOptions.pie.dataLabels.style.color);
-                } catch (err) {}
+                  if (dataset.plotOptions.pie.dataLabels.style.color) {
+                    dataset.plotOptions.pie.dataLabels.style.color = new Function(dataset.plotOptions.pie.dataLabels.style.color);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
                 try {
-                  dataset.yAxis.labels.formatter = new Function(dataset.yAxis.labels.formatter);
-                } catch (err) {}
+                  if (dataset.plotOptions.pie.tooltip.pointFormatter) {
+                    dataset.plotOptions.pie.tooltip.pointFormatter = new Function(dataset.plotOptions.pie.tooltip.pointFormatter);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
+                try {
+                  if (dataset.yAxis.labels.formatter) {
+                    dataset.yAxis.labels.formatter = new Function(dataset.yAxis.labels.formatter);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
                 $('#{% if widget.id %}{{ widget.id }}-{% endif %}{{ elem.id }}-{{ forloop.counter }}').highcharts(dataset);
               </script>
             {% endfor %}
