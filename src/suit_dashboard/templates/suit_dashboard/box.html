@@ -1,0 +1,92 @@
+<div class="dbox">
+  {% if box.title %}
+    <h1 class="box-title">{{ box.title }}</h1>
+  {% endif %}
+  {% if box.description %}
+    <p class="box-description">
+      {{ box.description|linebreaksbr }}
+    </p>
+  {% endif %}
+  {% if box.template %}
+    {% include box.template %}
+  {% else %}
+    {% for elem in box.context %}
+      {% if elem.template %}
+        {% include elem.template with item=elem %}
+      {% else %}
+        {% if elem.display == 'table' %}
+          <div id="{{ elem.html_id }}" class="box-item box-table">
+            <h2 class="box-item-name">{{ elem.name }}</h2>
+            <table class="table {{ elem.classes }}">
+              <tbody>
+                {% for line in elem.value %}
+                  <tr>
+                    {% for value in line %}
+                      <td class="box-item-value">{{ value|linebreaksbr }}</td>
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% elif elem.display == 'list' %}
+          <div id="{{ elem.html_id }}"  class="box-item box-list">
+            <h2 class="box-item-name">{{ elem.name }}</h2>
+            <ul class="list {{ elem.classes }}">
+              {% for li in elem.value %}
+                <li class="box-item-value">{{ li|linebreaksbr }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% elif elem.display == 'highcharts' %}
+          <div class="box-item box-chart {{ elem.classes }}">
+            <h2 class="box-item-name">{{ elem.name }}</h2>
+              <div class="box-item-value" id="{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}"></div>
+              <script>
+                var dataset = {{ elem.value|safe }};
+                try {
+                  if (dataset.tooltip.formatter) {
+                    dataset.tooltip.formatter = new Function(dataset.tooltip.formatter);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
+                try {
+                  if (dataset.plotOptions.pie.dataLabels.style.color) {
+                    dataset.plotOptions.pie.dataLabels.style.color = new Function(dataset.plotOptions.pie.dataLabels.style.color);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
+                try {
+                  if (dataset.plotOptions.pie.tooltip.pointFormatter) {
+                    dataset.plotOptions.pie.tooltip.pointFormatter = new Function(dataset.plotOptions.pie.tooltip.pointFormatter);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
+                try {
+                  if (dataset.yAxis.labels.formatter) {
+                    dataset.yAxis.labels.formatter = new Function(dataset.yAxis.labels.formatter);
+                  }
+                } catch (err) {
+                  console.log(err);
+                }
+                $('#{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}').highcharts(dataset);
+              </script>
+          </div>
+        {% else %}
+          <div id="{{ elem.html_id }}" class="box-item {{ elem.classes }}">
+            <p>
+              <span class="box-item-name">
+                {{ elem.name }}
+              </span> <span class="box-item-value">
+                {{ elem.value|linebreaksbr }}
+              </span>
+            </p>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</div>

@@ -5,9 +5,18 @@
   Suit Dashboard
 {% endblock %}
 
-{#{% block breadcrumbs %}{% endblock %}#}
-{#{% block sidebar %}{% endblock %}#}
-{#{% block header_time %}{% endblock %}#}
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <ul class="breadcrumb">
+      {% for crumb in crumbs %}
+        <li {% if forloop.last %}class="active"{% endif %}>
+          {% if not forloop.first %}<span class="divider">&raquo;</span>{% endif %}
+          <a {% if not forloop.last %}href="{% url crumb.url %}"{% endif %}>{{ crumb.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+{% endif %}
 
 {% block extrastyle %}
   <link href="{% static 'suit_dashboard/base.css' %}" rel="stylesheet">

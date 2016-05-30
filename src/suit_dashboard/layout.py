@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
-from suit_dashboard.widgets import Box
+from suit_dashboard.box import Box
 
 
 class Grid(object):
@@ -22,7 +22,7 @@ class Row(object):
 
 class Column(object):
     def __init__(self, *elements, **kwargs):
-        if not all([isinstance(e, Column) or isinstance(e, Box)
+        if not all([isinstance(e, Column) or issubclass(type(e), Box)
                     for e in elements]):
             raise TypeError('All elements of Column must '
                             'be Row or Box instances')

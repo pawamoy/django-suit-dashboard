@@ -39,9 +39,9 @@
   width: 100%;
 }
 
-.widget {
+.dbox {
   box-sizing: border-box;
   background-color: white;
   padding: 5px 10px;
-  margin: 1px;
+  margin: 2px;
 }

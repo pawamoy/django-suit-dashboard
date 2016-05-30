@@ -12,47 +12,71 @@ class Box(object):
                                      'must be a list or tuple')
             if not all([isinstance(e, Item) for e in items]):
                 raise ValueError('All elements of Box must be Item instances')
-            self.items = items
-        else:
-            self.items = self.get_items()
+            self._items = items
 
         if html_id:
-            self.html_id = html_id
-        else:
-            self.html_id = self.get_html_id()
+            self._html_id = html_id
         if title:
-            self.title = title
-        else:
-            self.title = self.get_title()
+            self._title = title
         if description:
-            self.description = description
-        else:
-            self.description = self.get_description()
+            self._description = description
         if template:
-            self.template = template
-        else:
-            self.template = self.get_template()
+            self._template = template
         if context:
-            self.context = context
-        else:
-            self.context = self.get_context()
+            self._context = context
 
         self.type = 'box'
+
+    @property
+    def html_id(self):
+        if not hasattr(self, '_html_id'):
+            self._html_id = self.get_html_id()
+        return self._html_id
 
     def get_html_id(self):
         return ''
 
+    @property
+    def title(self):
+        if not hasattr(self, '_title'):
+            self._title = self.get_title()
+        return self._title
+
     def get_title(self):
         return ''
+
+    @property
+    def description(self):
+        if not hasattr(self, '_description'):
+            self._description = self.get_description()
+        return self._description
 
     def get_description(self):
         return ''
 
+    @property
+    def template(self):
+        if not hasattr(self, '_template'):
+            self._template = self.get_template()
+        return self._template
+
     def get_template(self):
         return ''
 
+    @property
+    def items(self):
+        if not hasattr(self, '_items'):
+            self._items = self.get_items()
+        return self._items
+
     def get_items(self):
         return []
+
+    @property
+    def context(self):
+        if not hasattr(self, '_context'):
+            self._context = self.get_context()
+        return self._context
 
     def get_context(self):
         return {}
