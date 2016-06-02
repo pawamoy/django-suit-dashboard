@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 
 class Box(object):
     def __init__(self, html_id=None, title=None, description=None,
-                 items=None, template=None, **context):
+                 items=None, template=None, context=None, **kwargs):
         if items:
             if not (isinstance(items, list) or isinstance(items, tuple)):
                 raise AttributeError('Box items attribute '
@@ -24,6 +24,8 @@ class Box(object):
             self._template = template
         if context:
             self._context = context
+        if kwargs:
+            self._kwargs = kwargs
 
         self.type = 'box'
 
