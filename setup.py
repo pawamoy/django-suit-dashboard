@@ -40,7 +40,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     classifiers=[
-        # complete classifier list: http://pypi.python.org/pypi?%3Aaction=list_classifiers
+        # http://pypi.python.org/pypi?%3Aaction=list_classifiers
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
@@ -62,14 +62,13 @@ setup(
         'Topic :: Utilities',
     ],
     keywords=[
-        # eg: 'keyword1', 'keyword2', 'keyword3',
+        # 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        # eg: 'aspectlib==1.1.1', 'six>=1.7',
+        # 'aspectlib==1.1.1', 'six>=1.7',
     ],
     extras_require={
-        # eg:
-        #   'rst': ['docutils>=0.11'],
-        #   ':python_version=="2.6"': ['argparse'],
+        # 'rst': ['docutils>=0.11'],
+        # ':python_version=="2.6"': ['argparse'],
     },
 )

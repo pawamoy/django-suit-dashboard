@@ -6,41 +6,41 @@ Django Suit Dashboard
 
 |travis|
 |docs|
-|codecov|
 |landscape|
 |version|
 |wheel|
 
+.. |codecov|
 .. |supported-versions|
 .. |supported-implementations|
 
 .. |docs| image:: https://readthedocs.org/projects/django-suit-dashboard/badge/?version=latest
-    :target: https://django-suit-dashboard.readthedocs.org/en/latest/
+    :target: https://django-suit-dashboard.readthedocs.io/en/latest/
     :alt: Documentation Status
 
 .. |travis| image:: https://travis-ci.org/Pawamoy/django-suit-dashboard.svg?branch=master
     :alt: Travis-CI Build Status
-    :target: https://travis-ci.org/Pawamoy/django-suit-dashboard
+    :target: https://travis-ci.org/Pawamoy/django-suit-dashboard/
 
 .. |codecov| image:: https://codecov.io/github/Pawamoy/django-suit-dashboard/coverage.svg?branch=master
     :alt: Coverage Status
-    :target: https://codecov.io/github/Pawamoy/django-suit-dashboard
+    :target: https://codecov.io/github/Pawamoy/django-suit-dashboard/
 
 .. |landscape| image:: https://landscape.io/github/Pawamoy/django-suit-dashboard/master/landscape.svg?style=flat
-    :target: https://landscape.io/github/Pawamoy/django-suit-dashboard/master
+    :target: https://landscape.io/github/Pawamoy/django-suit-dashboard/
     :alt: Code Quality Status
 
 .. |version| image:: https://img.shields.io/pypi/v/django-suit-dashboard.svg?style=flat
     :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/django-suit-dashboard
+    :target: https://pypi.python.org/pypi/django-suit-dashboard/
 
 .. |downloads| image:: https://img.shields.io/pypi/dm/django-suit-dashboard.svg?style=flat
     :alt: PyPI Package monthly downloads
-    :target: https://pypi.python.org/pypi/django-suit-dashboard
+    :target: https://pypi.python.org/pypi/django-suit-dashboard/
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/django-suit-dashboard.svg?style=flat
     :alt: PyPI Wheel
-    :target: https://pypi.python.org/pypi/django-suit-dashboard
+    :target: https://pypi.python.org/pypi/django-suit-dashboard/
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/django-suit-dashboard.svg?style=flat
     :alt: Supported versions
