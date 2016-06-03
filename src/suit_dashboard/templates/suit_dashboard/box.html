@@ -40,7 +40,7 @@
           </div>
         {% elif elem.display == 'highcharts' %}
           <div class="box-item box-chart {{ elem.classes }}">
-            <h2 class="box-item-name">{{ elem.name }}</h2>
+            {% if elem.name %}<h2 class="box-item-name">{{ elem.name }}</h2>{% endif %}
               <div class="box-item-value" id="{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}"></div>
               <script>
                 var dataset = {{ elem.value|safe }};
