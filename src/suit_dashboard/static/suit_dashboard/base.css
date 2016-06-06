@@ -2,6 +2,11 @@
    margin-left: 0;
  }
 
+.dashboard-row [class|="dashboard-col"] {
+    position: relative;
+    float: left;
+}
+
 .dashboard-row .dashboard-col-1 {
   width: 8.333%;
 }
@@ -44,4 +49,30 @@
   background-color: white;
   padding: 5px 10px;
   margin: 2px;
+}
+
+.breadcrumb {
+  list-style-type: none;
+}
+
+.breadcrumb li {
+    display: inline;
+}
+
+.breadcrumb li a {
+  text-decoration: none;
+}
+
+.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb li.active a:hover {
+    text-decoration: none;
+}
+
+.breadcrumb li.active,
+.breadcrumb li.active a {
+  font-weight: bold;
+  color: #333;
 }
