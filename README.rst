@@ -44,11 +44,11 @@ Django Suit Dashboard
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/django-suit-dashboard.svg?style=flat
     :alt: Supported versions
-    :target: https://pypi.python.org/pypi/django-suit-dashboard
+    :target: https://pypi.python.org/pypi/django-suit-dashboard/
 
 .. |supported-implementations| image:: https://img.shields.io/pypi/implementation/django-suit-dashboard.svg?style=flat
     :alt: Supported implementations
-    :target: https://pypi.python.org/pypi/django-suit-dashboard
+    :target: https://pypi.python.org/pypi/django-suit-dashboard/
 
 
 .. end-badges
@@ -78,7 +78,7 @@ Installation
 Documentation
 =============
 
-https://django-suit-dashboard.readthedocs.org/
+https://django-suit-dashboard.readthedocs.io/en/latest/
 
 Development
 ===========
@@ -86,20 +86,3 @@ Development
 To run the all tests run::
 
     tox
-
-Note, to combine the coverage data from all the tox environments run:
-
-.. list-table::
-    :widths: 10 90
-    :stub-columns: 1
-
-    - - Windows
-      - ::
-
-            set PYTEST_ADDOPTS=--cov-append
-            tox
-
-    - - Other
-      - ::
-
-            PYTEST_ADDOPTS=--cov-append tox
