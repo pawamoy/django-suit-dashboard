@@ -66,7 +66,6 @@ License
 
 Software licensed under `MPL 2.0`_ license.
 
-.. _BSD-2 : https://opensource.org/licenses/BSD-2-Clause
 .. _MPL 2.0 : https://www.mozilla.org/en-US/MPL/2.0/
 
 Installation
