@@ -75,6 +75,20 @@
                 $('#{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}').highcharts(dataset);
               </script>
           </div>
+        {% elif elem.display == 'refreshable_highcharts' %}
+          <div class="box-item box-chart {{ elem.classes }}">
+            {% if elem.name %}<h2 class="box-item-name">{{ elem.name }}</h2>{% endif %}
+            <div class="box-item-value" id="{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}"></div>
+            {% with chart_url='admin:'|add:elem.value.name %}
+              <script>
+                $(function () {
+                  $.getJSON("{% url chart_url %}", function(data) {
+                    $('#{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}').highcharts(data);
+                  });
+                });
+              </script>
+            {% endwith %}
+          </div>
         {% else %}
           <div id="{{ elem.html_id }}" class="box-item {{ elem.classes }}">
             <p>

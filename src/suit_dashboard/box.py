@@ -88,6 +88,7 @@ class Item(object):
     AS_TABLE = 'table'
     AS_LIST = 'list'
     AS_HIGHCHARTS = 'highcharts'
+    AS_REFRESHABLE_HIGHCHARTS = 'refreshable_highcharts'
 
     def __init__(self, html_id=None, name=None, value=None,
                  display=None, template=None, classes=''):
