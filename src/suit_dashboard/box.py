@@ -2,6 +2,11 @@
 
 from __future__ import unicode_literals
 
+import json
+import inspect
+
+from suit_dashboard.views import RefreshableDataView
+
 
 class Box(object):
     def __init__(self, html_id=None, title=None, description=None,
@@ -15,70 +20,48 @@ class Box(object):
             self._items = items
 
         if html_id:
-            self._html_id = html_id
+            self.html_id = html_id
+        else:
+            self.html_id = self.get_html_id()
         if title:
-            self._title = title
+            self.title = title
+        else:
+            self.title = self.get_title()
         if description:
-            self._description = description
+            self.description = description
+        else:
+            self.description = self.get_description()
         if template:
-            self._template = template
+            self.template = template
+        else:
+            self.template = self.get_template()
+        if items:
+            self.items = items
+        else:
+            self.items = self.get_items()
         if context:
-            self._context = context
+            self.context = context
+        else:
+            self.context = self.get_context()
         if kwargs:
-            self._kwargs = kwargs
+            self.kwargs = kwargs
 
         self.type = 'box'
-
-    @property
-    def html_id(self):
-        if not hasattr(self, '_html_id'):
-            self._html_id = self.get_html_id()
-        return self._html_id
 
     def get_html_id(self):
         return ''
 
-    @property
-    def title(self):
-        if not hasattr(self, '_title'):
-            self._title = self.get_title()
-        return self._title
-
     def get_title(self):
         return ''
-
-    @property
-    def description(self):
-        if not hasattr(self, '_description'):
-            self._description = self.get_description()
-        return self._description
 
     def get_description(self):
         return ''
 
-    @property
-    def template(self):
-        if not hasattr(self, '_template'):
-            self._template = self.get_template()
-        return self._template
-
     def get_template(self):
         return ''
 
-    @property
-    def items(self):
-        if not hasattr(self, '_items'):
-            self._items = self.get_items()
-        return self._items
-
     def get_items(self):
         return []
-
-    @property
-    def context(self):
-        if not hasattr(self, '_context'):
-            self._context = self.get_context()
-        return self._context
 
     def get_context(self):
         return {}
@@ -88,13 +71,19 @@ class Item(object):
     AS_TABLE = 'table'
     AS_LIST = 'list'
     AS_HIGHCHARTS = 'highcharts'
-    AS_REFRESHABLE_HIGHCHARTS = 'refreshable_highcharts'
 
     def __init__(self, html_id=None, name=None, value=None,
                  display=None, template=None, classes=''):
         self.type = 'item'
         self.html_id = html_id
         self.name = name
+        if display == Item.AS_HIGHCHARTS:
+            if (inspect.isclass(value) and
+                    issubclass(value, RefreshableDataView)):
+                self.is_refreshable = True
+            else:
+                value = json.dumps(value)
+                self.is_refreshable = False
         self.value = value
         self.display = display
         self.template = template
