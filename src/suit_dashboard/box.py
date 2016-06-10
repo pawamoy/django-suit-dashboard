@@ -9,62 +9,60 @@ from suit_dashboard.views import RefreshableDataView
 
 
 class Box(object):
+    DEFAULTS = {
+        'html_id': '',
+        'title': '',
+        'description': '',
+        'items': [],
+        'template': '',
+        'context': {},
+    }
+
     def __init__(self, html_id=None, title=None, description=None,
-                 items=None, template=None, context=None, **kwargs):
+                 items=None, template=None, context=None,
+                 lazy=False, persistent=True, **kwargs):
         if items:
             if not (isinstance(items, list) or isinstance(items, tuple)):
                 raise AttributeError('Box items attribute '
                                      'must be a list or tuple')
             if not all([isinstance(e, Item) for e in items]):
                 raise ValueError('All elements of Box must be Item instances')
-            self._items = items
-
-        if html_id:
-            self.html_id = html_id
-        else:
-            self.html_id = self.get_html_id()
-        if title:
-            self.title = title
-        else:
-            self.title = self.get_title()
-        if description:
-            self.description = description
-        else:
-            self.description = self.get_description()
-        if template:
-            self.template = template
-        else:
-            self.template = self.get_template()
-        if items:
-            self.items = items
-        else:
-            self.items = self.get_items()
-        if context:
-            self.context = context
-        else:
-            self.context = self.get_context()
-        if kwargs:
-            self.kwargs = kwargs
 
         self.type = 'box'
+        one_shot = persistent and not lazy
+        self.lazy = lazy
+        self.persistent = persistent
+        self.one_shot = one_shot
 
-    def get_html_id(self):
-        return ''
+        if kwargs:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
-    def get_title(self):
-        return ''
+        l = locals()
+        for attr, default in Box.DEFAULTS.items():
+            private = '_%s' % attr
+            getter = 'get_%s' % attr
+            if not hasattr(self, getter):
+                setattr(self, getter, self._getter(default))
+            setattr(self.__class__, attr, self._property(private, getter))
+            if l[attr]:
+                setattr(self, private, l[attr])
+            elif one_shot:
+                setattr(self, private, getattr(self, getter)())
 
-    def get_description(self):
-        return ''
+    def _getter(self, default):
+        return lambda: default
 
-    def get_template(self):
-        return ''
+    def _property(self, private, getter_name):
+        def getter(self):
+            if not hasattr(self, private):
+                if self.persistent:
+                    setattr(self, private, getattr(self, getter_name)())
+                    return getattr(self, private)
+                return getattr(self, getter_name)()
+            return getattr(self, private)
 
-    def get_items(self):
-        return []
-
-    def get_context(self):
-        return {}
+        return property(fget=getter)
 
 
 class Item(object):
