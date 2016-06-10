@@ -2,9 +2,6 @@
 
 from __future__ import unicode_literals
 
-import random
-import string
-
 from django.views.generic import TemplateView, View
 
 from braces.views import AjaxResponseMixin, JSONResponseMixin
@@ -32,25 +29,10 @@ class DashboardView(TemplateView):
 
 
 class RefreshableDataView(JSONResponseMixin, AjaxResponseMixin, View):
-    instances = []
-
-    def __init__(self, func=lambda: None, name=None, regex=None):
-        super(RefreshableDataView, self).__init__()
-        if regex is None:
-            regex = ''.join(random.SystemRandom().choice(
-                string.ascii_lowercase + string.digits) for _ in range(32))
-        if name is not None:
-            if name in [i.name for i in RefreshableDataView.instances]:
-                raise ValueError('Name "%s" is already used by another '
-                                 'instance of RefreshableDataView' % name)
-            RefreshableDataView.instances.append(self)
-
-        self.regex = regex
-        self.func = func
-        self.name = name
+    children = []
 
     def get_data(self):
-        return self.func()
+        return {}
 
     def get(self, request, *args, **kwargs):
         return self.get_ajax(request, *args, **kwargs)

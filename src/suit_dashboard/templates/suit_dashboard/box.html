@@ -10,16 +10,16 @@
   {% if box.template %}
     {% include box.template %}
   {% else %}
-    {% for elem in box.context %}
-      {% if elem.template %}
-        {% include elem.template with item=elem %}
+    {% for item in box.items %}
+      {% if item.template %}
+        {% include item.template %}
       {% else %}
-        {% if elem.display == 'table' %}
-          <div id="{{ elem.html_id }}" class="box-item box-table">
-            <h2 class="box-item-name">{{ elem.name }}</h2>
-            <table class="table {{ elem.classes }}">
+        {% if item.display == 'table' %}
+          <div id="{{ item.html_id }}" class="box-item box-table">
+            <h2 class="box-item-name">{{ item.name }}</h2>
+            <table class="table {{ item.classes }}">
               <tbody>
-                {% for line in elem.value %}
+                {% for line in item.value %}
                   <tr>
                     {% for value in line %}
                       <td class="box-item-value">{{ value|linebreaksbr }}</td>
@@ -29,21 +29,40 @@
               </tbody>
             </table>
           </div>
-        {% elif elem.display == 'list' %}
-          <div id="{{ elem.html_id }}"  class="box-item box-list">
-            <h2 class="box-item-name">{{ elem.name }}</h2>
-            <ul class="list {{ elem.classes }}">
-              {% for li in elem.value %}
+        {% elif item.display == 'list' %}
+          <div id="{{ item.html_id }}"  class="box-item box-list">
+            <h2 class="box-item-name">{{ item.name }}</h2>
+            <ul class="list {{ item.classes }}">
+              {% for li in item.value %}
                 <li class="box-item-value">{{ li|linebreaksbr }}</li>
               {% endfor %}
             </ul>
           </div>
-        {% elif elem.display == 'highcharts' %}
-          <div class="box-item box-chart {{ elem.classes }}">
-            {% if elem.name %}<h2 class="box-item-name">{{ elem.name }}</h2>{% endif %}
-              <div class="box-item-value" id="{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}"></div>
+        {% elif item.display == 'highcharts' %}
+          <div class="box-item box-chart {{ item.classes }}">
+            {% if item.name %}<h2 class="box-item-name">{{ item.name }}</h2>{% endif %}
+            {% if item.is_refreshable %}
+              <div class="box-item-value" id="{{ item.value.name }}"></div>
+              {% with chart_url='admin:'|add:item.value.name %}
+                <script>
+                  $(function () {
+                    var chart, container = $('#{{ item.value.name }}');
+                    $.getJSON("{% url chart_url %}", function(initial_data) {
+                      container.highcharts(initial_data);
+                      chart = container.highcharts();
+                      setInterval(function() {
+                        $.getJSON("{% url chart_url %}", function(refreshed_data) {
+                          chart.series[0].setData(refreshed_data.series[0].data);
+                        });
+                      }, {{ item.value.refresh_time }});
+                    });
+                  });
+                </script>
+              {% endwith %}
+            {% else %}
+              <div class="box-item-value" id="{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ item.html_id }}"></div>
               <script>
-                var dataset = {{ elem.value|safe }};
+                var dataset = {{ item.value|safe }};
                 try {
                   if (dataset.tooltip.formatter) {
                     dataset.tooltip.formatter = new Function(dataset.tooltip.formatter);
@@ -72,30 +91,17 @@
                 } catch (err) {
                   console.log(err);
                 }
-                $('#{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}').highcharts(dataset);
+                $('#{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ item.html_id }}').highcharts(dataset);
               </script>
-          </div>
-        {% elif elem.display == 'refreshable_highcharts' %}
-          <div class="box-item box-chart {{ elem.classes }}">
-            {% if elem.name %}<h2 class="box-item-name">{{ elem.name }}</h2>{% endif %}
-            <div class="box-item-value" id="{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}"></div>
-            {% with chart_url='admin:'|add:elem.value.name %}
-              <script>
-                $(function () {
-                  $.getJSON("{% url chart_url %}", function(data) {
-                    $('#{% if box.html_id %}{{ box.html_id }}-{% endif %}{{ elem.html_id }}').highcharts(data);
-                  });
-                });
-              </script>
-            {% endwith %}
+            {% endif %}
           </div>
         {% else %}
-          <div id="{{ elem.html_id }}" class="box-item {{ elem.classes }}">
+          <div id="{{ item.html_id }}" class="box-item {{ item.classes }}">
             <p>
               <span class="box-item-name">
-                {{ elem.name }}
+                {{ item.name }}
               </span> <span class="box-item-value">
-                {{ elem.value|linebreaksbr }}
+                {{ item.value|linebreaksbr }}
               </span>
             </p>
           </div>
