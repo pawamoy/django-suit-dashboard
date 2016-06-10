@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import unicode_literals
+
 import random
 import string
-from django.views.generic import View, TemplateView
-from braces.views import JSONResponseMixin, AjaxResponseMixin
+
+from django.views.generic import TemplateView, View
+
+from braces.views import AjaxResponseMixin, JSONResponseMixin
 
 
 class DashboardView(TemplateView):
