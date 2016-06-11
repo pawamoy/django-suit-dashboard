@@ -9,15 +9,6 @@ from suit_dashboard.views import RefreshableDataView
 
 
 class Box(object):
-    DEFAULTS = {
-        'html_id': '',
-        'title': '',
-        'description': '',
-        'items': [],
-        'template': '',
-        'context': {},
-    }
-
     def __init__(self, html_id=None, title=None, description=None,
                  items=None, template=None, context=None,
                  lazy=False, persistent=True, **kwargs):
@@ -38,15 +29,22 @@ class Box(object):
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
-        l = locals()
-        for attr, default in Box.DEFAULTS.items():
+        local = locals()
+        for attr, default in {
+            'html_id': '',
+            'title': '',
+            'description': '',
+            'items': [],
+            'template': '',
+            'context': {},
+        }.items():
             private = '_%s' % attr
             getter = 'get_%s' % attr
             if not hasattr(self, getter):
                 setattr(self, getter, self._getter(default))
             setattr(self.__class__, attr, self._property(private, getter))
-            if l[attr]:
-                setattr(self, private, l[attr])
+            if local[attr]:
+                setattr(self, private, local[attr])
             elif one_shot:
                 setattr(self, private, getattr(self, getter)())
 

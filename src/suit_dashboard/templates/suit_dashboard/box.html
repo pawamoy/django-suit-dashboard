@@ -52,7 +52,10 @@
                       chart = container.highcharts();
                       setInterval(function() {
                         $.getJSON("{% url chart_url %}", function(refreshed_data) {
-                          chart.series[0].setData(refreshed_data.series[0].data);
+                          chart.series.forEach(function(v, i) {
+                            v.setData(refreshed_data.series[i].data, false);
+                          });
+                          chart.redraw();
                         });
                       }, {{ item.value.refresh_time }});
                     });
