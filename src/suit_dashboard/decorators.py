@@ -31,8 +31,13 @@ def refreshable(func, name=None, regex=None, refresh_time=5000):
         raise ValueError('Name %s is already used by another '
                          'RefreshableDataView subclass.' % name)
 
+    # NOTE: apparently the functions are GC'd, and therefore their memory
+    # address changes over time. The last solution I see to have "secure" urls,
+    # or at least "non-guessable" urls, is to hash the function name, which
+    # does not change over time.
     if regex is None:
-        regex = sha256(str(id(func)))  # Would just id be sufficient?
+        regex = sha256(name)
+        # regex = sha256(str(id(func)))  # Would just id be sufficient?
         regex = regex.hexdigest()[:32]
         while True:
             # regex = 'refreshable/' + ''.join(random.SystemRandom().choice(
