@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import random
 import string
 from functools import wraps
+from hashlib import sha256
 
 from suit_dashboard.views import RefreshableDataView
 
@@ -31,9 +32,12 @@ def refreshable(func, name=None, regex=None, refresh_time=5000):
                          'RefreshableDataView subclass.' % name)
 
     if regex is None:
+        regex = sha256(str(id(func)))  # Would just id be sufficient?
+        regex = regex.hexdigest()[:32]
         while True:
-            regex = 'refreshable/' + ''.join(random.SystemRandom().choice(
-                string.ascii_lowercase + string.digits) for _ in range(32))
+            # regex = 'refreshable/' + ''.join(random.SystemRandom().choice(
+            #     string.ascii_lowercase + string.digits) for _ in range(32))
+            regex = 'refreshable/' + regex
             if regex not in [c.regex for c in RefreshableDataView.children]:
                 break
 
