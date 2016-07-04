@@ -11,7 +11,7 @@ from suit_dashboard.views import RefreshableDataView
 class Box(object):
     def __init__(self, html_id=None, title=None, description=None,
                  items=None, template=None, context=None,
-                 lazy=False, persistent=True, **kwargs):
+                 lazy=False, persistent=False, **kwargs):
         if items:
             if not (isinstance(items, list) or isinstance(items, tuple)):
                 raise AttributeError('Box items attribute '
