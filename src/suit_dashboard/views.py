@@ -21,10 +21,9 @@ class DashboardView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         context.update(self.extra_context)
-        context.update({
-            'dashboard_grid': self.grid,
-            'crumbs': self.get_crumbs()
-        })
+        context['crumbs'] = self.get_crumbs()
+        if context.get('dashboard_grid', None) is None and self.grid:
+            context['dashboard_grid'] = self.grid
         return self.render_to_response(context)
 
 

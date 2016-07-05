@@ -30,7 +30,7 @@ def refreshable(func, name=None, regex=None, refresh_time=5000):
                          'RefreshableDataView subclass.' % name)
 
     # NOTE: apparently the functions are GC'd, and therefore their memory
-    # address changes over time. The last solution I see to have "secure" urls,
+    # address change over time. The last solution I see to have "secure" urls,
     # or at least "non-guessable" urls, is to hash the function name, which
     # does not change over time.
     if regex is None:
