@@ -5,18 +5,13 @@ Django Suit Dashboard
 .. start-badges
 
 |travis|
-|docs|
 |landscape|
 |version|
 |wheel|
+|codecov|
 
-.. |codecov|
 .. |supported-versions|
 .. |supported-implementations|
-
-.. |docs| image:: https://readthedocs.org/projects/django-suit-dashboard/badge/?version=latest
-    :target: https://django-suit-dashboard.readthedocs.io/en/latest/
-    :alt: Documentation Status
 
 .. |travis| image:: https://travis-ci.org/Pawamoy/django-suit-dashboard.svg?branch=master
     :alt: Travis-CI Build Status
@@ -78,7 +73,7 @@ Installation
 Documentation
 =============
 
-https://django-suit-dashboard.readthedocs.io/en/latest/
+https://github.com/Pawamoy/django-suit-dashboard/wiki
 
 Development
 ===========
