@@ -83,6 +83,6 @@ https://django-suit-dashboard.readthedocs.io/en/latest/
 Development
 ===========
 
-To run the all tests run::
+To run all the tests::
 
     tox
