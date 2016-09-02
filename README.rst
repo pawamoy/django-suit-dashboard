@@ -9,6 +9,7 @@ Django Suit Dashboard
 |version|
 |wheel|
 |codecov|
+|gitter|
 
 .. |supported-versions|
 .. |supported-implementations|
@@ -44,6 +45,10 @@ Django Suit Dashboard
 .. |supported-implementations| image:: https://img.shields.io/pypi/implementation/django-suit-dashboard.svg?style=flat
     :alt: Supported implementations
     :target: https://pypi.python.org/pypi/django-suit-dashboard/
+
+.. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
+    :alt: Join the chat at https://gitter.im/Pawamoy/django-suit-dashboard
+    :target: https://gitter.im/Pawamoy/django-suit-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 
 .. end-badges
