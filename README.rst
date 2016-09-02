@@ -83,6 +83,4 @@ https://github.com/Pawamoy/django-suit-dashboard/wiki
 Development
 ===========
 
-To run all the tests::
-
-    tox
+To run all the tests: ``tox``
