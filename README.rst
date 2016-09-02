@@ -81,3 +81,8 @@ Development
 To run all the tests::
 
     tox
+
+
+.. image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
+   :alt: Join the chat at https://gitter.im/Pawamoy/django-suit-dashboard
+   :target: https://gitter.im/Pawamoy/django-suit-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
