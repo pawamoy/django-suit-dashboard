@@ -18,4 +18,6 @@ include README.rst
 
 include tox.ini .travis.yml appveyor.yml
 
+include release.sh
+
 global-exclude *.py[cod] __pycache__ *.so *.dylib
