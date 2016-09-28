@@ -60,7 +60,7 @@ setup(
         # 'keyword1', 'keyword2', 'keyword3',
     ],
     install_requires=[
-        # 'aspectlib==1.1.1', 'six>=1.7',
+        'django-braces'
     ],
     extras_require={
         # 'rst': ['docutils>=0.11'],
