@@ -19,7 +19,7 @@ def read(*names, **kwargs):
 
 setup(
     name='django-suit-dashboard',
-    version='1.0.1',
+    version='1.0.2',
     license='MPL 2.0',
     description='Create a dashboard within django-suit admin interface',
     long_description='%s\n%s' % (
