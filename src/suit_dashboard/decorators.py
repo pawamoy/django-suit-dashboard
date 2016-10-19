@@ -34,7 +34,7 @@ def refreshable(func, name=None, regex=None, refresh_time=5000):
     # or at least "non-guessable" urls, is to hash the function name, which
     # does not change over time.
     if regex is None:
-        regex = sha256(name)
+        regex = sha256(name.encode('utf-8'))
         # regex = sha256(str(id(func)))  # Would just id be sufficient?
         regex = regex.hexdigest()[:32]
         while True:
