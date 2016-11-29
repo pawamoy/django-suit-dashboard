@@ -1,0 +1,9 @@
+<div class="row dashboard-row">
+  {% for column in row.columns %}
+    <div class="dashboard-col-{{ column.width }}">
+      {% for element in column.elements %}
+        {% include "suit_dashboard/element.html" %}
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>

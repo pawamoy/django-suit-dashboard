@@ -1,0 +1,78 @@
+.dashboard-row {
+   margin-left: 0;
+ }
+
+.dashboard-row [class|="dashboard-col"] {
+    position: relative;
+    float: left;
+}
+
+.dashboard-row .dashboard-col-1 {
+  width: 8.333%;
+}
+.dashboard-row .dashboard-col-2 {
+  width: 16.66%;
+}
+.dashboard-row .dashboard-col-3 {
+  width: 25%;
+}
+.dashboard-row .dashboard-col-4 {
+  width: 33.33%;
+}
+.dashboard-row .dashboard-col-5 {
+  width: 41.66%;
+}
+.dashboard-row .dashboard-col-6 {
+  width: 50%;
+}
+.dashboard-row .dashboard-col-7 {
+  width: 58.33%;
+}
+.dashboard-row .dashboard-col-8 {
+  width: 66.66%;
+}
+.dashboard-row .dashboard-col-9 {
+  width: 75%;
+}
+.dashboard-row .dashboard-col-10 {
+  width: 83.33%;
+}
+.dashboard-row .dashboard-col-11 {
+  width: 91.66%;
+}
+.dashboard-row .dashboard-col-12 {
+  width: 100%;
+}
+
+.dbox {
+  box-sizing: border-box;
+  background-color: white;
+  padding: 5px 10px;
+  margin: 2px;
+}
+
+.breadcrumb {
+  list-style-type: none;
+}
+
+.breadcrumb li {
+    display: inline;
+}
+
+.breadcrumb li a {
+  text-decoration: none;
+}
+
+.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb li.active a:hover {
+    text-decoration: none;
+}
+
+.breadcrumb li.active,
+.breadcrumb li.active a {
+  font-weight: bold;
+  color: #333;
+}

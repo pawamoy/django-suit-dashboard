@@ -1,0 +1,16 @@
+[paths]
+source =
+   src/suit_dashboard
+   */site-packages/suit_dashboard
+
+[run]
+branch = true
+source =
+    suit_dashboard
+    tests
+parallel = true
+
+[report]
+show_missing = true
+precision = 2
+omit = *migrations*

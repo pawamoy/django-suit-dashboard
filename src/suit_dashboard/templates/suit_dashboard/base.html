@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static %}
+
+{% block title %}
+  Suit Dashboard
+{% endblock %}
+
+{% if not is_popup %}
+  {% block breadcrumbs %}
+    <ul class="breadcrumb">
+      {% for crumb in crumbs %}
+        <li {% if forloop.last %}class="active"{% endif %}>
+          {% if not forloop.first %}<span class="divider">&raquo;</span>{% endif %}
+          <a {% if not forloop.last %}href="{% url crumb.url %}"{% endif %}>{{ crumb.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+{% endif %}
+
+{% block extrastyle %}
+  <link href="{% static 'suit_dashboard/base.css' %}" rel="stylesheet">
+  {% block dashboard_css %}{% endblock %}
+{% endblock %}
+
+{% block extrajs %}
+  {% block dashboard_js %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+  {% block dashboard_highcharts_js %}
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+  {% endblock %}
+  {% for row in dashboard_grid.rows %}
+    {% include "suit_dashboard/row.html" %}
+  {% endfor %}
+{% endblock %}
+

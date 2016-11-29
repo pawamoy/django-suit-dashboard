@@ -1,0 +1,48 @@
+# This file exists so you can easily regenerate your project.
+#
+# `cookiepatcher` is a convenient shim around `cookiecutter`
+# for regenerating projects (it will generate a .cookiecutterrc
+# automatically for any template). To use it:
+#
+#    pip install cookiepatcher
+#    cookiepatcher gh:ionelmc/cookiecutter-pylibrary project-path
+#
+# See:
+#    https://pypi.python.org/pypi/cookiecutter
+#
+# Alternatively, you can run:
+#
+#    cookiecutter --overwrite-if-exists --config-file=project-path/.cookiecutterrc gh:ionelmc/cookiecutter-pylibrary
+
+default_context:
+
+    appveyor:                        'no'
+    codacy:                          'no'
+    codeclimate:                     'no'
+    codecov:                         'yes'
+    command_line_interface:          'no'
+    command_line_interface_bin_name: 'django-suit-dashboard'
+    coveralls:                       'no'
+    distribution_name:               'django-suit-dashboard'
+    django:                          'no'
+    django_fake_model:               'no'
+    django_versions:                 '1.8,1.9,1.10'
+    email:                           'timothee.mazzucotelli@gmail.com'
+    full_name:                       'Timothee Mazzucotelli'
+    github_username:                 'Pawamoy'
+    gitter:                          'yes'
+    landscape:                       'yes'
+    package_name:                    'suit_dashboard'
+    project_name:                    'Django Suit Dashboard'
+    project_short_description:       'Create a dashboard within django-suit admin interface'
+    pyup:                            'yes'
+    release_date:                    'today'
+    repo_name:                       'django-suit-dashboard'
+    requiresio:                      'no'
+    scrutinizer:                     'no'
+    sphinx_doctest:                  'no'
+    sphinx_theme:                    'sphinx-rtd-theme'
+    travis:                          'yes'
+    version:                         '0.1.0'
+    website:                         'http://pawamoy.github.io/'
+    year:                            'now'
