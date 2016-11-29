@@ -2,4 +2,4 @@
 pytest
 pytest-travis-fold
 pytest-cov
-
+django-fake-model
