@@ -4,15 +4,15 @@ Django Suit Dashboard
 
 .. start-badges
 
+
 |travis|
+|codecov|
 |landscape|
 |version|
 |wheel|
-|codecov|
+|pyup|
 |gitter|
 
-.. |supported-versions|
-.. |supported-implementations|
 
 .. |travis| image:: https://travis-ci.org/Pawamoy/django-suit-dashboard.svg?branch=master
     :alt: Travis-CI Build Status
@@ -26,29 +26,21 @@ Django Suit Dashboard
     :target: https://landscape.io/github/Pawamoy/django-suit-dashboard/
     :alt: Code Quality Status
 
+.. |pyup| image:: https://pyup.io/repos/github/pawamoy/django-suit-dashboard/shield.svg
+    :target: https://pyup.io/repos/github/pawamoy/django-suit-dashboard/
+    :alt: Updates
+
+.. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
+    :alt: Join the chat at https://gitter.im/Pawamoy/django-suit-dashboard
+    :target: https://gitter.im/Pawamoy/django-suit-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
 .. |version| image:: https://img.shields.io/pypi/v/django-suit-dashboard.svg?style=flat
     :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/django-suit-dashboard/
-
-.. |downloads| image:: https://img.shields.io/pypi/dm/django-suit-dashboard.svg?style=flat
-    :alt: PyPI Package monthly downloads
     :target: https://pypi.python.org/pypi/django-suit-dashboard/
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/django-suit-dashboard.svg?style=flat
     :alt: PyPI Wheel
     :target: https://pypi.python.org/pypi/django-suit-dashboard/
-
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/django-suit-dashboard.svg?style=flat
-    :alt: Supported versions
-    :target: https://pypi.python.org/pypi/django-suit-dashboard/
-
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/django-suit-dashboard.svg?style=flat
-    :alt: Supported implementations
-    :target: https://pypi.python.org/pypi/django-suit-dashboard/
-
-.. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
-    :alt: Join the chat at https://gitter.im/Pawamoy/django-suit-dashboard
-    :target: https://gitter.im/Pawamoy/django-suit-dashboard?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 
 .. end-badges

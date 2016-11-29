@@ -23,7 +23,8 @@ setup(
     license='MPL 2.0',
     description='Create a dashboard within django-suit admin interface',
     long_description='%s\n%s' % (
-        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S).sub('', read('README.rst')),
+        re.compile('^.. start-badges.*^.. end-badges', re.M | re.S)
+            .sub('', read('README.rst')),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))
     ),
     author='Timothee Mazzucotelli',
@@ -36,34 +37,30 @@ setup(
     zip_safe=False,
     classifiers=[
         # http://pypi.python.org/pypi?%3Aaction=list_classifiers
-        'Development Status :: 5 - Production/Stable',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
         'Operating System :: Unix',
         'Operating System :: POSIX',
         'Operating System :: Microsoft :: Windows',
+        'Framework :: Django',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
-        # uncomment if you test on these interpreters:
-        # 'Programming Language :: Python :: Implementation :: IronPython',
-        # 'Programming Language :: Python :: Implementation :: Jython',
-        # 'Programming Language :: Python :: Implementation :: Stackless',
         'Topic :: Utilities',
     ],
     keywords=[
-        # 'keyword1', 'keyword2', 'keyword3',
+        'django-suit-dashboard',
     ],
     install_requires=[
         'django-braces'
     ],
     extras_require={
-        # 'rst': ['docutils>=0.11'],
-        # ':python_version=="2.6"': ['argparse'],
+        # eg:
+        #   'rst': ['docutils>=0.11'],
+        #   ':python_version=="2.6"': ['argparse'],
     },
 )
