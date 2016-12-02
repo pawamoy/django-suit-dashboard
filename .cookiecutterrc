@@ -36,7 +36,7 @@ default_context:
     project_name:                    'Django Suit Dashboard'
     project_short_description:       'Create a dashboard within django-suit admin interface'
     pyup:                            'yes'
-    release_date:                    'today'
+    release_date:                    '2016-04-19'
     repo_name:                       'django-suit-dashboard'
     requiresio:                      'no'
     scrutinizer:                     'no'
@@ -45,4 +45,3 @@ default_context:
     travis:                          'yes'
     version:                         '0.1.0'
     website:                         'http://pawamoy.github.io/'
-    year:                            'now'
