@@ -2,4 +2,7 @@
 pytest
 pytest-travis-fold
 pytest-cov
+
+pytest-django
 django-fake-model
+
