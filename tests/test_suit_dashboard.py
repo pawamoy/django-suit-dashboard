@@ -10,12 +10,16 @@ import suit_dashboard
 
 
 class MainTestCase(TestCase):
-    """Main Django test case"""
+    """Main Django test case."""
+
     def setUp(self):
+        """Setup method."""
         pass
 
     def test_main(self):
+        """Main test method."""
         assert suit_dashboard
 
     def tearDown(self):
+        """Tear down method."""
         pass
