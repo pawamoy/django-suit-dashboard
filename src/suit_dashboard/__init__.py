@@ -8,4 +8,4 @@ Django projects. It lets you define boxes (widgets), and assemble them in your
 pages using a Bootstrap-like layout. You can have nested lines and columns.
 """
 
-__version__ = "1.0.2"
+__version__ = '1.0.2'
