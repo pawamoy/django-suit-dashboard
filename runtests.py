@@ -26,7 +26,6 @@ try:
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'django.contrib.sites',
-            'suit_dashboard',
         ],
         SITE_ID=1,
         MIDDLEWARE_CLASSES=()
