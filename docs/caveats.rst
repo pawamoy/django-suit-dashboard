@@ -22,7 +22,7 @@ logs) each time.
   get method (2):
 
   1) persistent for the worker's life-time, lazy at startup (first request) -> rendering
-  2) persistent for the rendering function period, lazy at viewcall (box creation) -> rendering
+  2) persistent for the rendering function period, lazy at view call (box creation) -> rendering
 
 - WARNING: in both cases, persistence can lead to memory consumption, freed either when GC
-  is called or worker is relaunched. 
+  is called or worker is relaunched.
