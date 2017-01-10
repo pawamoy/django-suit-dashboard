@@ -26,9 +26,15 @@ class Box(object):
     reused later without computing them again.
     """
 
-    def __init__(self, html_id=None, title=None, description=None,
-                 items=None, template=None, context=None,
-                 lazy=False, persistent=False, **kwargs):
+    html_id = None
+    title = None
+    description = None
+    widgets = None
+    template = None
+    context = None
+
+    def __init__(self, html_id=html_id, title=title, description=description,
+                 widgets=widgets, template=template, context=context):
         """
         Init method.
 
@@ -43,96 +49,118 @@ class Box(object):
             persistent (str): will store the values of getters into variables.
             **kwargs (): additional attributes to attach to the box itself.
         """
-        if items:
-            if not (isinstance(items, list) or isinstance(items, tuple)):
-                raise AttributeError('Box items attribute '
+        if widgets:
+            if not (isinstance(widgets, list) or isinstance(widgets, tuple)):
+                raise AttributeError('Box widgets attribute '
                                      'must be a list or tuple')
-            if not all([isinstance(e, Item) for e in items]):
-                raise ValueError('All elements of Box must be Item instances')
+            if not all([isinstance(e, Widget) for e in widgets]):
+                raise ValueError('All elements of Box must be Widget instances')
 
         self.type = 'box'
-        one_shot = persistent and not lazy
-        self.lazy = lazy
-        self.persistent = persistent
-        self.one_shot = one_shot
 
-        if kwargs:
-            for key, value in kwargs.items():
-                setattr(self, key, value)
+        self.html_id = html_id
+        self.title = title
+        self.description = description
+        self.widgets = widgets
+        self.template = template
+        self.context = context
 
-        local = locals()
-        for attr, default in {
-            'html_id': '',
-            'title': '',
-            'description': '',
-            'items': [],
-            'template': '',
-            'context': {},
-        }.items():
-            private = '_%s' % attr
-            getter = 'get_%s' % attr
-            if not hasattr(self, getter):
-                setattr(self, getter, self._getter(default))
-            setattr(self.__class__, attr, self._property(private, getter))
-            if local[attr]:
-                setattr(self, private, local[attr])
-            elif one_shot:
-                setattr(self, private, getattr(self, getter)())
+    def get_html_id(self):
+        return self.html_id
 
-    def _getter(self, default):
-        return lambda: default
+    def get_title(self):
+        return self.title
 
-    def _property(self, private, getter_name):
-        def getter(self):
-            if not hasattr(self, private):
-                if self.persistent:
-                    setattr(self, private, getattr(self, getter_name)())
-                    return getattr(self, private)
-                return getattr(self, getter_name)()
-            return getattr(self, private)
+    def get_description(self):
+        return self.description
 
-        return property(fget=getter)
+    def get_widgets(self):
+        return self.widgets
+
+    def get_template(self):
+        return self.template
+
+    def get_context(self):
+        return self.context
 
 
-class Item(object):
+class Display(object):
     """
-    Item class.
+    Display class.
 
-    Attributes:
-        AS_TABLE (str): display item as table.
-        AS_LIST (str): display item as list.
-        AS_HIGHCHARTS (str): display item as highchart.
+    Provide a template path and optionally javascript files paths.
+    The template will be used to render a widget in HTML, and the javascript
+    files will be included after the template code. These javascript files
+    should contain functions to redraw completely or partially update the
+    rendered HTML.
     """
 
-    AS_TABLE = 'table'
-    AS_LIST = 'list'
-    AS_HIGHCHARTS = 'highcharts'
+    template = None
+    javascript = []
 
-    def __init__(self, html_id=None, name=None, value=None,
-                 display=None, template=None, classes=''):
+    def __init__(self, template=template, javascript=javascript):
+        self.template = template
+        self.javascript = javascript
+
+    def get_template(self):
+        return self.template
+
+    def get_javascript(self):
+        return self.javascript
+
+
+class Widget(object):
+    """Widget class."""
+
+    type = 'static_widget'
+
+    html_id = None
+    name = None
+    content = None
+    display = Display()
+    classes = ''
+
+    def __init__(self, html_id=html_id, name=name, content=content,
+                 display=display, classes=classes):
         """
         Init method.
 
         Args:
             html_id (str): an ID to set on the HTML item.
             name (str): the name of the item, displayed in HTML.
-            value (str/list/dict): a string, a list, a nested list (2-dim array
-                for tables) or a dict for highcharts.
-            display (str): the type of display.
-            template (str): the path to a custom template to use for this item.
+            content (): suitable content according to chosen display.
+            display (Display): the type of display.
             classes (str): additional classes to pass to the HTML item.
         """
-        self.type = 'item'
         self.html_id = html_id
         self.name = name
-        if display == Item.AS_HIGHCHARTS:
-            if (inspect.isclass(value) and
-                    issubclass(value, RefreshableDataView)):
-                self.is_refreshable = True
-            else:
-                value = json.dumps(value)
-                self.is_refreshable = False
-        self.value = value
+        self.content = content
         self.display = display
-        self.template = template
         self.classes = classes
+
+    def get_html_id(self):
+        return self.html_id
+
+    def get_name(self):
+        return self.name
+
+    def get_content(self):
+        return self.content
+
+    def get_display(self):
+        return self.display
+
+    def get_classes(self):
+        return self.classes
+
+
+class StaticWidget(Widget):
+    pass
+
+
+class RealTimeWidget(Widget):
+    type = 'real_time_widget'
+
+    def get_updated_content(self):
+        raise NotImplementedError(
+            'get_updated_content for object %s is not implemented' % self)
