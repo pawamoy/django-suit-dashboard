@@ -61,17 +61,17 @@ class DashboardView(TemplateView):
         return self.render_to_response(context)
 
 
-class RefreshableDataView(JSONResponseMixin, AjaxResponseMixin, View):
+class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
     """
     View for refreshable items.
 
     Keep track of subclasses when generating them with related decorator.
 
     Attributes:
-        children (list): list of subclasses generated thtough decorator.
+        classes (list): list of subclasses generated thtough decorator.
     """
 
-    children = []
+    classes = []
 
     def get_data(self):
         """

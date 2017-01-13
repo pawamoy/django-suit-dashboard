@@ -1,0 +1,45 @@
+<div class="box-widget {{ widget.classes }}">
+  {% if widget.get_name %}<h2 class="box-widget-name">{{ widget.get_name }}</h2>{% endif %}
+  <div class="box-widget-content" id="{{ widget.content.name }}"></div>
+  <script>
+    var dataset = {{ widget.get_content|safe }};
+    {% for js_code in widget.get_content.js_code %}
+      try {
+        if (dataset.{{ js_code }}) {
+          dataset{{ js_code }} = new Function(dataset.{{ js_code }});
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    {% endfor %}
+//    try {
+//      if (dataset.tooltip.formatter) {
+//        dataset.tooltip.formatter = new Function(dataset.tooltip.formatter);
+//      }
+//    } catch (err) {
+//      console.log(err);
+//    }
+//    try {
+//      if (dataset.plotOptions.pie.dataLabels.style.color) {
+//        dataset.plotOptions.pie.dataLabels.style.color = new Function(dataset.plotOptions.pie.dataLabels.style.color);
+//      }
+//    } catch (err) {
+//      console.log(err);
+//    }
+//    try {
+//      if (dataset.plotOptions.pie.tooltip.pointFormatter) {
+//        dataset.plotOptions.pie.tooltip.pointFormatter = new Function(dataset.plotOptions.pie.tooltip.pointFormatter);
+//      }
+//    } catch (err) {
+//      console.log(err);
+//    }
+//    try {
+//      if (dataset.yAxis.labels.formatter) {
+//        dataset.yAxis.labels.formatter = new Function(dataset.yAxis.labels.formatter);
+//      }
+//    } catch (err) {
+//      console.log(err);
+//    }
+    $('#{{ widget.content.name }}').highcharts(dataset);
+  </script>
+</div>

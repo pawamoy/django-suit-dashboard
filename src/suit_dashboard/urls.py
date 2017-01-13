@@ -4,10 +4,9 @@
 
 from __future__ import unicode_literals
 from django.conf.urls import url
-from suit_dashboard.views import RefreshableDataView
 
 
-def get_refreshable_urls(admin_view_func=lambda x: x):
+def get_realtime_urls(admin_view_func=lambda x: x):
     """
     Get the refreshable URL for items that have used the refreshable decorator.
 
@@ -18,5 +17,6 @@ def get_refreshable_urls(admin_view_func=lambda x: x):
     Returns:
         list: the list of the refreshable URLs.
     """
-    return [url(c.regex, admin_view_func(c.as_view()), name=c.name)
-            for c in RefreshableDataView.children]
+    from .admin import REALTIME_WIDGETS
+    return [url(w.url_regex, admin_view_func(w.as_view()), name=w.url_name)
+            for w in REALTIME_WIDGETS]
