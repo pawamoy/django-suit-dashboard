@@ -63,9 +63,9 @@ class RealTimeWidget(Widget):
     refresh_time = 1000
 
     def __init__(self, *args, **kwargs):
-        url_name = kwargs.pop('url_name', RealTimeWidget.url_name)
-        url_regex = kwargs.pop('url_regex', RealTimeWidget.url_regex)
-        refresh_time = kwargs.pop('refresh_time', RealTimeWidget.refresh_time)
+        url_name = kwargs.pop('url_name', self.__class__.url_name)
+        url_regex = kwargs.pop('url_regex', self.__class__.url_regex)
+        refresh_time = kwargs.pop('refresh_time', self.__class__.refresh_time)
 
         super(RealTimeWidget).__init__(*args, **kwargs)
 
@@ -89,52 +89,3 @@ class RealTimeWidget(Widget):
                     break
 
         self.refresh_time = refresh_time
-
-
-class CustomRealtimeWidget(RealTimeWidget):
-    html_id = 'custom_widget'
-    name = 'Custom Widget'
-    display = Display(template='suit_dashboard/display/highcharts_custom.html')
-    url_name = 'custom_rtw'
-    url_regex = 'onsenfout123'
-
-    # initial content
-    def get_content(self):
-        highcharts_dict = {
-            'chart': {
-                'type': 'spline',
-                'marginRight': 10,
-            },
-            'title': {
-                'text': 'Live random data'
-            },
-            'xAxis': {
-                'type': 'datetime',
-                'tickPixelInterval': 150
-            },
-            'yAxis': {
-                'title': {
-                    'text': 'Value'
-                },
-                'plotLines': [{
-                    'value': 0,
-                    'width': 1,
-                    'color': '#808080'
-                }]
-            },
-            'series': [{
-                'name': 'Random data',
-                'data': []
-            }]
-        }
-        return highcharts_dict
-
-    # get random points
-    def get_updated_content(self):
-        return (
-            datetime.datetime.now(),
-            random.choice(range(0, 25)),
-        )
-
-
-register_realtime(CustomRealtimeWidget)
