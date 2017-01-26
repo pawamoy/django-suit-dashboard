@@ -12,6 +12,13 @@ def register_realtime(widget):
     else:
         url_name = widget.__name__
 
+    if not hasattr(widget, 'get_updated_content'):
+        raise AttributeError('Widget %s must implement get_updated_content '
+                             'method.' % widget)
+    elif not callable(widget.get_updated_content):
+        raise ValueError('get_updated_content in widget %s is not callable'
+                         % widget)
+
     if url_name in [w.url_name for w in REALTIME_WIDGETS]:
         raise ValueError('URL name %s is already used by another '
                          'real time widget.' % url_name)
