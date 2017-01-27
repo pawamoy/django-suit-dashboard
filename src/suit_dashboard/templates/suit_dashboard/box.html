@@ -11,7 +11,7 @@
     {% include box.get_template %}
   {% else %}
     {% for widget in box.get_widgets %}
-      {% include widget.get_display.get_template with widget=widget only %}
+      {% include widget.get_template with widget=widget only %}
     {% endfor %}
   {% endif %}
 </div>

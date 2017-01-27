@@ -117,15 +117,15 @@ class Box(object):
 
         self.type = 'box'
 
-        if html_id != self.__class__.html_id:
+        if html_id != Box.html_id:
             self.html_id = html_id
-        if title != self.__class__.title:
+        if title != Box.title:
             self.title = title
-        if description != self.__class__.description:
+        if description != Box.description:
             self.description = description
-        if template != self.__class__.template:
+        if template != Box.template:
             self.template = template
-        if context != self.__class__.context:
+        if context != Box.context:
             self.context = context
 
     def get_html_id(self):

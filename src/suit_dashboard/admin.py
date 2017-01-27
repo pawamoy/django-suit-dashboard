@@ -2,6 +2,7 @@
 from hashlib import sha256
 
 from .views import PartialResponse
+from .widgets import RealTimeWidget
 
 REALTIME_WIDGETS = []
 
@@ -34,15 +35,20 @@ def register_realtime(widget):
         raise ValueError('URL regex %s is already used by another '
                          'real time widget.' % url_regex)
 
-    func = widget.get_updated_content
+    if isinstance(widget, RealTimeWidget):
+        def get_data(self):
+            return widget.get_updated_content()
+    elif isinstance(widget, type):
+        def get_data(self):
+            return widget().get_updated_content()
 
     class GeneratedView(PartialResponse):
         pass
 
-    GeneratedView.get_data = func
-
+    GeneratedView.get_data = get_data
     GeneratedView.url_name = url_name
     GeneratedView.url_regex = url_regex
     GeneratedView.refresh_time = widget.refresh_time
 
     REALTIME_WIDGETS.append(GeneratedView)
+    return widget

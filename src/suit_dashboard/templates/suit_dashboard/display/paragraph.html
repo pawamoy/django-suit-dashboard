@@ -1,9 +1,9 @@
-<div id="{{ widget.html_id }}" class="box-widget {{ widget.classes }}">
+<div id="{{ widget.get_html_id }}" class="box-widget {{ widget.get_classes }}">
   <p>
     <span class="box-widget-name">
-      {{ widget.name }}
+      {{ widget.get_name }}
     </span> <span class="box-widget-content">
-      {{ widget.content|linebreaksbr }}
+      {{ widget.get_content|linebreaksbr }}
     </span>
   </p>
 </div>
