@@ -1,1 +1,1 @@
-django-braces==1.10.0
+django-braces==1.11.0
