@@ -35,17 +35,10 @@ def register_realtime(widget):
         raise ValueError('URL regex %s is already used by another '
                          'real time widget.' % url_regex)
 
-    if isinstance(widget, RealTimeWidget):
+    class GeneratedView(PartialResponse):
         def get_data(self):
             return widget.get_updated_content()
-    elif isinstance(widget, type):
-        def get_data(self):
-            return widget().get_updated_content()
 
-    class GeneratedView(PartialResponse):
-        pass
-
-    GeneratedView.get_data = get_data
     GeneratedView.url_name = url_name
     GeneratedView.url_regex = url_regex
     GeneratedView.refresh_time = widget.refresh_time
