@@ -27,7 +27,7 @@ if os.getenv('SPELLCHECK'):
 source_suffix = '.rst'
 master_doc = 'index'
 project = u'Django Suit Dashboard'
-year = '2016'
+year = '2017'
 author = u'Timothee Mazzucotelli'
 copyright = '{0}, {1}'.format(year, author)
 version = release = u'1.0.3'
