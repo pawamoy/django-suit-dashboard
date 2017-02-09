@@ -52,9 +52,9 @@ Create a dashboard within django-suit admin interface
 License
 =======
 
-Software licensed under `MPL 2.0`_ license.
+Software licensed under `ISC`_ license.
 
-.. _MPL 2.0 : https://www.mozilla.org/en-US/MPL/2.0/
+.. _ISC : https://www.isc.org/downloads/software-support-policy/isc-license/
 
 Installation
 ============
