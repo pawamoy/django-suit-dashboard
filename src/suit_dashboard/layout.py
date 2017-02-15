@@ -91,7 +91,8 @@ class Box(object):
     context = None
 
     def __init__(self, html_id=html_id, title=title, description=description,
-                 widgets=widgets, template=template, context=context):
+                 widgets=widgets, template=template, context=context,
+                 **kwargs):
         """
         Init method.
 
@@ -99,19 +100,16 @@ class Box(object):
             html_id (str): an ID to set on the HTML box.
             title (str): a title to display on the top of the box.
             description (str): a description to display after the title box.
-            items (list): the box's list of items.
+            widgets (list): the box's list of widgets.
             template (str): the path to a custom template to use for this box.
             context (dict): additional context to pass to the box.
-            lazy (str): will not load at startup, only when called.
-            persistent (str): will store the values of getters into variables.
-            **kwargs (): additional attributes to attach to the box itself.
         """
         if widgets:
             if not (isinstance(widgets, list) or isinstance(widgets, tuple)):
                 raise AttributeError('Box widgets attribute '
                                      'must be a list or tuple')
             if not all([isinstance(e, Widget) for e in widgets]):
-                raise ValueError('All elements of Box must be Widget instances')
+                raise ValueError('All elements of Box must be Widget instances')  # noqa
 
             self.widgets = widgets
 
@@ -127,6 +125,9 @@ class Box(object):
             self.template = template
         if context != Box.context:
             self.context = context
+
+        for kw, arg in kwargs.items():
+            setattr(self, kw, arg)
 
     def get_html_id(self):
         return self.html_id
@@ -145,4 +146,3 @@ class Box(object):
 
     def get_context(self):
         return self.context
-

@@ -8,11 +8,9 @@ from django.test import TestCase
 import pytest
 
 
-from suit_dashboard.box import Box, Item
-# from suit_dashboard.decorators import refreshable
-from suit_dashboard.layout import Column, Grid, Row
-# from suit_dashboard.urls import get_refreshable_urls
-from suit_dashboard.views import DashboardView  # , RefreshableDataView
+from suit_dashboard.layout import Box, Column, Grid, Row
+from suit_dashboard.views import DashboardView
+from suit_dashboard.widgets import Widget
 
 
 class MainTestCase(TestCase):
@@ -20,7 +18,7 @@ class MainTestCase(TestCase):
 
     def test_main(self):
         """Main test method."""
-        box = Box(items=[Item()])
+        box = Box(widgets=[Widget()])
         grid = Grid(Row(Column(width=12)))
         view = DashboardView()
 
@@ -32,15 +30,15 @@ class MainTestCase(TestCase):
 class BoxTestCase(TestCase):
     """Box test case."""
 
-    def test_box_items_type(self):
+    def test_box_widgets_type(self):
         """Test raising of errors when items type are wrong."""
         with pytest.raises(AttributeError) as e:
-            Box(items=1)
-        assert 'Box items attribute must be a list or tuple' in str(e.value)
+            Box(widgets=1)
+        assert 'Box widgets attribute must be a list or tuple' in str(e.value)
 
         with pytest.raises(ValueError) as e:
-            Box(items=[Item(), 0])
-        assert 'All elements of Box must be Item instances' in str(e.value)
+            Box(widgets=[Widget(), 0])
+        assert 'All elements of Box must be Widget instances' in str(e.value)
 
     def test_box_kwargs(self):
         """Test box correctly setting up kwargs as attributes."""
@@ -53,7 +51,7 @@ class BoxTestCase(TestCase):
         assert getattr(box, 'arg3') == 3
 
 
-class ItemTestCase(TestCase):
+class WidgetTestCase(TestCase):
     """Item test case."""
 
 

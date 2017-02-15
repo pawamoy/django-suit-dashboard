@@ -6,6 +6,8 @@ Contents
    :maxdepth: 2
 
    readme
+   usage
+   caveats
    contributing
    authors
    changelog
