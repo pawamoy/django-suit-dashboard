@@ -7,7 +7,7 @@
 
 {% if not is_popup %}
   {% block breadcrumbs %}
-    <ul class="breadcrumb">
+    <ul class="breadcrumbs">
       {% for crumb in crumbs %}
         <li {% if forloop.last %}class="active"{% endif %}>
           {% if not forloop.first %}<span class="divider">&raquo;</span>{% endif %}
@@ -16,6 +16,22 @@
       {% endfor %}
     </ul>
   {% endblock %}
+
+  {% comment "classic django style" %}
+  {% block breadcrumbs %}
+    <div class="breadcrumbs">
+      {% for crumb in crumbs %}
+        {% if forloop.last %}
+          {{ crumb.name }}
+        {% else %}
+          <a href="{% url crumb.url %}">{{ crumb.name }}</a>
+        {% endif %}
+        {% if not forloop.last %}&rsaquo;{% endif %}
+      {% endfor %}
+    </div>
+  {% endblock breadcrumbs %}
+  {% endcomment }
+
 {% endif %}
 
 {% block extrastyle %}
@@ -37,4 +53,3 @@
     {% include "suit_dashboard/row.html" %}
   {% endfor %}
 {% endblock %}
-
