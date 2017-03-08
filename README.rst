@@ -6,7 +6,7 @@ Django Suit Dashboard
 
 
 |travis|
-|codecov|
+|codacy|
 |landscape|
 |version|
 |wheel|
@@ -18,16 +18,16 @@ Django Suit Dashboard
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/Pawamoy/django-suit-dashboard/
 
-.. |codecov| image:: https://codecov.io/github/Pawamoy/django-suit-dashboard/coverage.svg?branch=master
-    :alt: Coverage Status
-    :target: https://codecov.io/github/Pawamoy/django-suit-dashboard/
-
 .. |landscape| image:: https://landscape.io/github/Pawamoy/django-suit-dashboard/master/landscape.svg?style=flat
     :target: https://landscape.io/github/Pawamoy/django-suit-dashboard/
     :alt: Code Quality Status
 
-.. |pyup| image:: https://pyup.io/repos/github/pawamoy/django-suit-dashboard/shield.svg
-    :target: https://pyup.io/repos/github/pawamoy/django-suit-dashboard/
+.. |codacy| image:: https://api.codacy.com/project/badge/Grade/REPLACE_WITH_PROJECT_ID
+    :target: https://www.codacy.com/app/Pawamoy/django-suit-dashboard/
+    :alt: Codacy Code Quality Status
+
+.. |pyup| image:: https://pyup.io/account/repos/github/pawamoy/django-suit-dashboard/shield.svg
+    :target: https://pyup.io/account/repos/github/pawamoy/django-suit-dashboard/
     :alt: Updates
 
 .. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
