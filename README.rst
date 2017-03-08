@@ -58,7 +58,7 @@ License
 
 Software licensed under `ISC`_ license.
 
-.. _ISC : https://www.isc.org/downloads/software-support-policy/isc-license/
+.. _ISC: https://www.isc.org/downloads/software-support-policy/isc-license/
 
 Installation
 ============
@@ -70,7 +70,8 @@ Installation
 Documentation
 =============
 
-https://github.com/Pawamoy/django-suit-dashboard/wiki
+http://django-suit-dashboard.readthedocs.io/en/latest/
+
 
 Development
 ===========
