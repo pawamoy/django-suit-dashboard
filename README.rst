@@ -17,8 +17,8 @@ Django Suit Dashboard
     :alt: Travis-CI Build Status
     :target: https://travis-ci.org/Pawamoy/django-suit-dashboard/
 
-.. |codacy| image:: https://api.codacy.com/project/badge/Grade/REPLACE_WITH_PROJECT_ID
-    :target: https://www.codacy.com/app/Pawamoy/django-suit-dashboard/
+.. |codacy| image:: https://api.codacy.com/project/badge/Grade/f17fe5fdb2a248efa3e9eccd4b7045a7
+    :target: https://www.codacy.com/app/Pawamoy/django-suit-dashboard/dashboard
     :alt: Codacy Code Quality Status
 
 .. |pyup| image:: https://pyup.io/account/repos/github/pawamoy/django-suit-dashboard/shield.svg
