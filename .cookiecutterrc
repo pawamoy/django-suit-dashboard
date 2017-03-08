@@ -31,7 +31,7 @@ default_context:
     full_name:                       'Timothee Mazzucotelli'
     github_username:                 'Pawamoy'
     gitter:                          'yes'
-    landscape:                       'yes'
+    landscape:                       'no'
     package_name:                    'suit_dashboard'
     project_name:                    'Django Suit Dashboard'
     project_short_description:       'Create a dashboard within django-suit admin interface'
