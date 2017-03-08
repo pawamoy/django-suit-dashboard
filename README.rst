@@ -19,11 +19,11 @@ Django Suit Dashboard
     :target: https://travis-ci.org/Pawamoy/django-suit-dashboard/
 
 .. |codacy| image:: https://api.codacy.com/project/badge/Grade/REPLACE_WITH_PROJECT_ID
-    :target: https://www.codacy.com/app/Pawamoy/django-suit-dashboard/
+    :target: https://www.codacy.com/app/Pawamoy/django-suit-dashboard/dashboard
     :alt: Codacy Code Quality Status
 
-.. |pyup| image:: https://pyup.io/account/repos/github/pawamoy/django-suit-dashboard/shield.svg
-    :target: https://pyup.io/account/repos/github/pawamoy/django-suit-dashboard/
+.. |pyup| image:: https://pyup.io/repos/github/Pawamoy/django-suit-dashboard/shield.svg
+    :target: https://pyup.io/repos/github/Pawamoy/django-suit-dashboard/
     :alt: Updates
 
 .. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
