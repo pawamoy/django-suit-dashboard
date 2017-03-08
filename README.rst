@@ -27,7 +27,6 @@ Django Suit Dashboard
     :target: https://landscape.io/github/Pawamoy/django-suit-dashboard/
     :alt: Code Quality Status
 
-
 .. |pyup| image:: https://pyup.io/repos/github/pawamoy/django-suit-dashboard/shield.svg
     :target: https://pyup.io/repos/github/pawamoy/django-suit-dashboard/
     :alt: Updates
@@ -66,7 +65,8 @@ Installation
 Documentation
 =============
 
-https://github.com/Pawamoy/django-suit-dashboard/wiki
+http://django-suit-dashboard.readthedocs.io/en/latest/
+
 
 Development
 ===========
