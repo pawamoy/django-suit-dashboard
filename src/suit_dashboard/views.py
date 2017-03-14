@@ -8,6 +8,7 @@ DashboardView for classic views and RefreshableDataView for refreshable items.
 
 from __future__ import unicode_literals
 
+from django.conf import settings
 from django.views.generic import TemplateView, View
 
 from braces.views import AjaxResponseMixin, JSONResponseMixin
@@ -56,6 +57,7 @@ class DashboardView(TemplateView):
         context = self.get_context_data(**kwargs)
         context.update(self.extra_context)
         context['crumbs'] = self.get_crumbs()
+        context['suit'] = 'suit' in settings.INSTALLED_APPS
         if context.get('dashboard_grid', None) is None and self.grid:
             context['dashboard_grid'] = self.grid
         return self.render_to_response(context)

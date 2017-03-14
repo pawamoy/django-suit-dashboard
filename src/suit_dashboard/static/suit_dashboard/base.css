@@ -51,28 +51,28 @@
   margin: 2px;
 }
 
-.breadcrumb {
+.breadcrumbs {
   list-style-type: none;
 }
 
-.breadcrumb li {
+.breadcrumbs li {
     display: inline;
 }
 
-.breadcrumb li a {
+.breadcrumbs li a {
   text-decoration: none;
 }
 
-.breadcrumb li a:hover {
+.breadcrumbs li a:hover {
   text-decoration: underline;
 }
 
-.breadcrumb li.active a:hover {
+.breadcrumbs li.active a:hover {
     text-decoration: none;
 }
 
-.breadcrumb li.active,
-.breadcrumb li.active a {
+.breadcrumbs li.active,
+.breadcrumbs li.active a {
   font-weight: bold;
   color: #333;
 }

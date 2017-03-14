@@ -7,48 +7,42 @@
 
 {% if not is_popup %}
   {% block breadcrumbs %}
-    <ul class="breadcrumbs">
-      {% for crumb in crumbs %}
-        <li {% if forloop.last %}class="active"{% endif %}>
-          {% if not forloop.first %}<span class="divider">&raquo;</span>{% endif %}
-          <a {% if not forloop.last %}href="{% url crumb.url %}"{% endif %}>{{ crumb.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
+    {% if suit %}
+      <ul class="breadcrumbs">
+        {% for crumb in crumbs %}
+          <li {% if forloop.last %}class="active"{% endif %}>
+            {% if not forloop.first %}<span class="divider">&rsaquo;</span>{% endif %}
+            <a {% if not forloop.last %}href="{% url crumb.url %}"{% endif %}>{{ crumb.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <div class="breadcrumbs">
+        {% for crumb in crumbs %}
+          {% if forloop.last %}
+            {{ crumb.name }}
+          {% else %}
+            <a href="{% url crumb.url %}">{{ crumb.name }}</a>
+          {% endif %}
+          {% if not forloop.last %}&rsaquo;{% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
   {% endblock %}
-
-  {% comment "classic django style" %}
-  {% block breadcrumbs %}
-    <div class="breadcrumbs">
-      {% for crumb in crumbs %}
-        {% if forloop.last %}
-          {{ crumb.name }}
-        {% else %}
-          <a href="{% url crumb.url %}">{{ crumb.name }}</a>
-        {% endif %}
-        {% if not forloop.last %}&rsaquo;{% endif %}
-      {% endfor %}
-    </div>
-  {% endblock breadcrumbs %}
-  {% endcomment }
-
 {% endif %}
 
 {% block extrastyle %}
+  {{ block.super }}
   <link href="{% static 'suit_dashboard/base.css' %}" rel="stylesheet">
   {% block dashboard_css %}{% endblock %}
 {% endblock %}
 
 {% block extrajs %}
+  {{ block.super }}
   {% block dashboard_js %}{% endblock %}
 {% endblock %}
 
 {% block content %}
-  {% block dashboard_highcharts_js %}
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/highcharts-more.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-  {% endblock %}
   {% for row in dashboard_grid.rows %}
     {% include "suit_dashboard/row.html" %}
   {% endfor %}
