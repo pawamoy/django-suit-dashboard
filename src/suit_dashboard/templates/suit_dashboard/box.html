@@ -1,17 +1,17 @@
 <div class="dbox">
-  {% if box.get_title %}
-    <h1 class="box-title">{{ box.get_title }}</h1>
+  {% if box.title %}
+    <h1 class="box-title">{{ box.title }}</h1>
   {% endif %}
-  {% if box.get_description %}
+  {% if box.description %}
     <p class="box-description">
-      {{ box.get_description|linebreaksbr }}
+      {{ box.description|linebreaksbr }}
     </p>
   {% endif %}
-  {% if box.get_template %}
-    {% include box.get_template %}
+  {% if box.template %}
+    {% include box.template %}
   {% else %}
-    {% for widget in box.get_widgets %}
-      {% include widget.get_template with widget=widget only %}
+    {% for widget in box.widgets %}
+      {% include widget.template with widget=widget %}
     {% endfor %}
   {% endif %}
 </div>

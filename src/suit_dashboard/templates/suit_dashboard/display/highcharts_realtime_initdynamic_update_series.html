@@ -1,5 +1,5 @@
 <div class="box-widget {{ widget.classes }}">
-  {% if widget.get_name %}<h2 class="box-widget-name">{{ widget.get_name }}</h2>{% endif %}
+  {% if widget.name %}<h2 class="box-widget-name">{{ widget.name }}</h2>{% endif %}
   <div class="box-widget-content" id="{{ widget.content.name }}"></div>
   {% with chart_url='admin:'|add:widget.content.name %}
     <script>

@@ -12,13 +12,25 @@ from __future__ import unicode_literals
 
 from hashlib import sha256
 
+from . import AppSettings
 from .views import PartialResponse
 
-DEFAULT_TIME_INTERVAL = 2000
 REALTIME_WIDGETS = []
 
 
 def realtime(widget, url_name=None, url_regex=None, time_interval=None):
+    """
+    Return a widget as real-time.
+
+    Args:
+        widget (Widget): the widget to register and return as real-time.
+        url_name (str): the URL name to call to get updated content.
+        url_regex (regex): the URL regex to be matched.
+        time_interval (int): the interval of refreshment in milliseconds.
+
+    Returns:
+        Widget: the "real-timed" widget.
+    """
     if not hasattr(widget, 'get_updated_content'):
         raise AttributeError('Widget %s must implement get_updated_content '
                              'method.' % widget)
@@ -52,7 +64,7 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
         if getattr(widget, 'time_interval', None) is not None:
             time_interval = widget.time_interval
         else:
-            time_interval = DEFAULT_TIME_INTERVAL
+            time_interval = AppSettings.get_default_time_interval()
 
     class GeneratedView(PartialResponse):
         def get_data(self):
@@ -68,14 +80,13 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
 
 class Widget(object):
     """Widget class."""
-    html_id = None
-    name = None
-    content = None
-    template = ''
-    classes = ''
 
-    def __init__(self, html_id=html_id, name=name, content=content,
-                 template=template, classes=classes):
+    def __init__(self,
+                 html_id=None,
+                 name=None,
+                 content=None,
+                 template=None,
+                 classes=None):
         """
         Init method.
 
@@ -83,34 +94,34 @@ class Widget(object):
             html_id (str): an ID to set on the HTML item.
             name (str): the name of the item, displayed in HTML.
             content (): suitable content according to chosen display.
-            display (Display): the type of display.
+            template (str): the template responsible for display.
             classes (str): additional classes to pass to the HTML item.
         """
-        if html_id != Widget.html_id:
-            self.html_id = html_id
-        if name != Widget.name:
-            self.name = name
-        if content != Widget.content:
-            self.content = content
-        if template != Widget.template:
-            self.display = template
-        if classes != Widget.classes:
-            self.classes = classes
-
-    def get_html_id(self):
-        return self.html_id
-
-    def get_name(self):
-        return self.name
-
-    def get_content(self):
-        return self.content
-
-    def get_template(self):
-        return self.template
-
-    def get_classes(self):
-        return self.classes
+        if html_id is not None:
+            try:
+                self.html_id = html_id
+            except AttributeError:
+                self._html_id = html_id
+        if name is not None:
+            try:
+                self.name = name
+            except AttributeError:
+                self._name = name
+        if content is not None:
+            try:
+                self.content = content
+            except AttributeError:
+                self._content = content
+        if template is not None:
+            try:
+                self.template = template
+            except AttributeError:
+                self._template = template
+        if classes is not None:
+            try:
+                self.classes = classes
+            except AttributeError:
+                self._classes = classes
 
     def get_updated_content(self):
-        return self.get_content()
+        return self.content

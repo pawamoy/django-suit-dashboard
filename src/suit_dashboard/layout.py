@@ -83,15 +83,13 @@ class Box(object):
     reused later without computing them again.
     """
 
-    html_id = None
-    title = None
-    description = None
-    widgets = None
-    template = None
-    context = None
-
-    def __init__(self, html_id=html_id, title=title, description=description,
-                 widgets=widgets, template=template, context=context,
+    def __init__(self,
+                 html_id=None,
+                 title=None,
+                 description=None,
+                 widgets=None,
+                 template=None,
+                 context=None,
                  **kwargs):
         """
         Init method.
@@ -104,45 +102,45 @@ class Box(object):
             template (str): the path to a custom template to use for this box.
             context (dict): additional context to pass to the box.
         """
-        if widgets:
+        if widgets is not None:
             if not (isinstance(widgets, list) or isinstance(widgets, tuple)):
                 raise AttributeError('Box widgets attribute '
                                      'must be a list or tuple')
             if not all([isinstance(e, Widget) for e in widgets]):
                 raise ValueError('All elements of Box must be Widget instances')  # noqa
 
-            self.widgets = widgets
+            try:
+                self.widgets = widgets
+            except AttributeError:
+                self._widgets = widgets
 
         self.type = 'box'
 
-        if html_id != Box.html_id:
-            self.html_id = html_id
-        if title != Box.title:
-            self.title = title
-        if description != Box.description:
-            self.description = description
-        if template != Box.template:
-            self.template = template
-        if context != Box.context:
-            self.context = context
+        if html_id is not None:
+            try:
+                self.html_id = html_id
+            except AttributeError:
+                self._html_id = html_id
+        if title is not None:
+            try:
+                self.title = title
+            except AttributeError:
+                self._title = title
+        if description is not None:
+            try:
+                self.description = description
+            except AttributeError:
+                self._description = description
+        if template is not None:
+            try:
+                self.template = template
+            except AttributeError:
+                self._template = template
+        if context is not None:
+            try:
+                self.context = context
+            except AttributeError:
+                self._context = context
 
         for kw, arg in kwargs.items():
             setattr(self, kw, arg)
-
-    def get_html_id(self):
-        return self.html_id
-
-    def get_title(self):
-        return self.title
-
-    def get_description(self):
-        return self.description
-
-    def get_widgets(self):
-        return self.widgets
-
-    def get_template(self):
-        return self.template
-
-    def get_context(self):
-        return self.context
