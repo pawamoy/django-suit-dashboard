@@ -30,6 +30,21 @@ class AppSettings(object):
         self.default_time_interval = AppSettings.get_default_time_interval()
 
     @staticmethod
+    def check():
+        AppSettings.check_default_time_interval()
+
+    @staticmethod
+    def check_default_time_interval():
+        default_time_interval = AppSettings.get_default_time_interval()
+        if not isinstance(default_time_interval, int):
+            raise ValueError('DEFAULT_TIME_INTERVAL must be int')
+        elif default_time_interval < 0:
+            raise ValueError('DEFAULT_TIME_INTERVAL must be positive or zero')
+
+    @staticmethod
     def get_default_time_interval():
         """Return default time interval value."""
         return getattr(settings, 'SUIT_DASH_DEFAULT_TIME_INTERVAL', 1000)
+
+
+AppSettings.check()
