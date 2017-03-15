@@ -1,0 +1,14 @@
+<div id="{{ widget.html_id }}" class="box-widget box-table">
+  <h2 class="box-widget-name">{{ widget.name }}</h2>
+  <table class="table {{ widget.classes }}">
+    <tbody>
+      {% for line in widget.content %}
+        <tr>
+          {% for value in line %}
+            <td class="box-widget-content">{{ value|linebreaksbr }}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

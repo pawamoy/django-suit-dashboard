@@ -28,7 +28,8 @@ try:
             'django.contrib.sites',
         ],
         SITE_ID=1,
-        MIDDLEWARE_CLASSES=()
+        MIDDLEWARE_CLASSES=(),
+        SUIT_DASH_DEFAULT_TIME_INTERVAL=500
     )
 
     try:
