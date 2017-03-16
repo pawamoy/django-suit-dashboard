@@ -120,3 +120,220 @@ Some real-time widgets and box examples.
         def get_widgets(self):
             self.widgets[1].reset_generator()
             return self.widgets
+
+
+First, mandatory steps
+======================
+
+To add custom views in your admin interface, you will need 4 things:
+
+- an AdminSite instance
+- loading it in your main URLs module
+- change ``django.contrib.admin`` to
+  ``django.contrib.admin.apps.SimpleAdminConfig`` in ``INSTALLED_APPS``
+- the views (class-based ones)
+
+Here is an example of AdminSite:
+
+.. code:: python
+
+    from django.contrib.admin.sites import AdminSite
+    from django.conf.urls import url
+
+    from .views import CustomView
+
+
+    class DashboardSite(AdminSite):
+        def get_urls(self):
+            urls = super(DashboardSite , self).get_urls()
+            custom_urls = [
+                url(r'^$', self.admin_view(CustomView.as_view()), name='index'),
+            ]
+
+            del urls[0]
+            return custom_urls + urls
+
+As you can see, the first URL (leading to the main page of the interface)
+has been replaced by a link to our custom view. It will allow us to add more
+links to more content.
+
+.. note::
+
+    If you want to keep the original main page, just comment ``del urls[0]``
+    and change the regular experssion of the custom URL (something like
+    ``r'^dashboard/'``).
+    Note that in this case, you will have to add a link to the dashboard
+    somehow in the basic main page, or you will need to enter the URL manually
+    in your browser.
+
+Here the only added view is imported from a ``views`` module. We will see later
+how it is written.
+
+Before loading your admin site, change ``django.contrib.admin`` to
+``django.contrib.admin.apps.SimpleAdminConfig`` in ``INSTALLED_APPS``.
+Since Django Suit Dashboard works well with Django Suit, you can write
+something like the following to test with and without Suit rapidly.
+
+.. code:: python
+
+    SUIT = True
+    # SUIT = False
+
+    INSTALLED_APPS = [
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'proyekt',
+        'suit_dashboard'
+    ]
+
+    if SUIT:  # add suit and replace admin with SimpleAdminConfig
+        INSTALLED_APPS = [
+            'suit',
+            'django.contrib.admin.apps.SimpleAdminConfig'
+        ] + INSTALLED_APPS[1:]
+
+Just switch on and off ``SUIT`` boolean to test it out.
+
+Once your admin site is set up and your installed apps ok,
+load your admin site in your main URLs module:
+
+.. code:: python
+
+    from django.contrib import admin
+
+    from .site import DashboardSite
+
+    admin.site = DashboardSite()
+    admin.sites.site = admin.site
+    admin.autodiscover()
+
+
+Views
+=====
+
+Django Suit Dashboard provides a view called ``DashboardView``, importable
+from ``suit_dashboard.views``. You can inherit of this base view to create
+your own views.
+
+.. code:: python
+
+    from suit_dashboard.views import DashboardView
+
+
+    class CustomView(DashboardView):
+        pass
+
+This view will render the base template from Django Suit Dashboard. If you
+want to add CSS or JS libraries in your HTML, you can specify the ``template``
+class variable in your view:
+
+.. code:: python
+
+    class CustomView(DashboardView):
+        template_name = 'a/project/template.html'
+
+In the template, you can override or overload the ``dashboard_css`` and
+``dashboard_js`` blocks. Example:
+
+.. code:: html
+
+    {% extends "suit_dashboard/base.html" %}
+    {% load static %}
+
+    {% block dashboard_css %}
+      {% if not suit %}
+        <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+      {% endif %}
+    {% endblock %}
+
+    {% block dashboard_js %}
+      {% if not suit %}
+        <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+      {% endif %}
+      <script src="{% static "bower_components/highcharts/highcharts.js" %}"></script>
+      <script src="{% static "bower_components/highcharts/modules/heatmap.js" %}"></script>
+      <script src="{% static "bower_components/highcharts/highcharts-more.js" %}"></script>
+    {% endblock %}
+
+.. note::
+
+    As you can see, a ``suit`` variable is available in the context of every
+    view based on ``DashboardView``. You can use it to adapt your content for
+    Django Suit and classic Django styles. In the example above, we use it
+    to avoid adding Bootstrap a second time
+
+
+
+Nested views and breadcrumbs
+----------------------------
+
+Nesting views is useful if you want to build a page tree in your admin
+interface. It is also useful to build navigation breadcrumbs.
+
+Let's play with an example:
+
+.. code:: python
+
+    # in your AdminSite class
+
+    def get_urls(self):
+        urls = super(DashboardSite , self).get_urls()
+        custom_urls = [
+            url(r'^$', self.admin_view(CustomView.as_view()), name='index'),
+            url(r'nest1/^$', self.admin_view(NestView1.as_view()), name='nest1'),
+            url(r'nest1/nest2/^$', self.admin_view(NestView2.as_view()), name='nest2'),
+        ]
+
+    # in your views
+
+    class CustomView(DashboardView):
+        template_name = 'a/project/template.html'
+        crumbs = ({'url': 'admin:index', 'name': _('Custom')}, )
+
+
+    class NestView1(CustomView):
+        crumbs = ({'url': 'admin:nest1', 'name': _('Nest 1')}, )
+
+
+    class NestView2(NestView1):
+        crumbs = ({'url': 'admin:nest2', 'name': _('Nest 2')}, )
+
+
+This set of views will automatically render a navigation bar like in the
+following images (classic-styled and suit-styled):
+
+.. image:: https://cloud.githubusercontent.com/assets/3999221/23990246/bed6ea70-0a35-11e7-95d3-bcc5e7904ba3.png
+    :alt: Classic-style breadcrumbs
+.. image:: https://cloud.githubusercontent.com/assets/3999221/23990258/c4286fd0-0a35-11e7-95eb-c439fdc68997.png
+    :alt: Suit-style breacrumbs
+
+
+Layout
+======
+
+Widgets
+=======
+
+Real-time widgets
+-----------------
+
+Templates
+=========
+
+Main template
+-------------
+
+Box templates
+-------------
+
+Widget templates
+----------------
+
+Suit menu
+=========

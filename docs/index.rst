@@ -7,7 +7,6 @@ Contents
 
    readme
    usage
-   caveats
    contributing
    authors
    changelog
