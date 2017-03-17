@@ -22,3 +22,14 @@ Mazzucotelli
 admin
 screenshot
 meerkat
+instantiation
+subclassing
+Highcharts
+Lorem
+Ipsum
+refreshable
+isort
+bumpversion
+cookiecutter
+pydjama
+JQuery

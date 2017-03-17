@@ -1,6 +1,6 @@
 <div class="box-widget {{ widget.classes }}">
   {% if widget.name %}<h2 class="box-widget-name">{{ widget.name }}</h2>{% endif %}
-  <div class="box-widget-content" id="{{ widget.content.name }}"></div>
+  <div class="box-widget-content" id="{{ widget.html_id }}"></div>
   {% with chart_url='admin:'|add:widget.url_name %}
     <script>
       var dataset = {{ widget.content|safe }};
@@ -14,7 +14,7 @@
         }
       {% endfor %}
 
-      var chart = $('#{{ widget.content.name }}').highcharts(dataset);
+      var chart = $('#{{ widget.html_id }}').highcharts(dataset);
 
       $(function () {
         setInterval(function() {
@@ -24,7 +24,7 @@
             });
             chart.redraw();
           });
-        }, {{ widget.refresh_time }});
+        }, {{ widget.time_interval }});
       });
     </script>
   {% endwith %}

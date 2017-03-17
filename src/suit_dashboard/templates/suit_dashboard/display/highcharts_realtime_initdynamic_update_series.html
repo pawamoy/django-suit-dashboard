@@ -1,27 +1,10 @@
 <div class="box-widget {{ widget.classes }}">
   {% if widget.name %}<h2 class="box-widget-name">{{ widget.name }}</h2>{% endif %}
-  <div class="box-widget-content" id="{{ widget.content.name }}"></div>
-  {% with chart_url='admin:'|add:widget.content.name %}
+  <div class="box-widget-content" id="{{ widget.html_id }}"></div>
+  {% with chart_url='admin:'|add:widget.url_name %}
     <script>
-//      function redraw(widget_name, url) {
-//        var chart, container = $('#' + widget_name);
-//        $.getJSON(url, function(initial_data) {
-//          container.highcharts(initial_data);
-//          chart = container.highcharts();
-//        });
-//      }
-//      function update(widget_name, url) {
-//        var chart = $('#' + widget_name).highcharts();
-//        $.getJSON(url, function(refreshed_data) {
-//          chart.series.forEach(function(v, i) {
-//            v.setData(refreshed_data.series[i].data, false);
-//          });
-//          chart.redraw();
-//        });
-//      }
-
       $(function () {
-        var chart, container = $('#{{ widget.content.name }}');
+        var chart, container = $('#{{ widget.html_id }}');
         $.getJSON("{% url chart_url %}", function(initial_data) {
           container.highcharts(initial_data);
           chart = container.highcharts();
@@ -32,14 +15,9 @@
               });
               chart.redraw();
             });
-          }, {{ widget.refresh_time }});
+          }, {{ widget.time_interval }});
         });
       });
-
-//      redraw("{{ widget.content.name }}", "{% url chart_url %}");
-//      setInterval(function() {
-//          update("{{ widget.content.name }}", "{% url chart_url %}")
-//      }, "{{ widget.refresh_time }}");
     </script>
   {% endwith %}
 </div>

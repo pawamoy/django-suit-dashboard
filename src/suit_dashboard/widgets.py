@@ -75,6 +75,14 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
     GeneratedView.time_interval = time_interval
 
     REALTIME_WIDGETS.append(GeneratedView)
+
+    if not hasattr(widget, 'url_name'):
+        widget.url_name = url_name
+    if not hasattr(widget, 'url_regex'):
+        widget.url_regex = url_regex
+    if not hasattr(widget, 'time_interval'):
+        widget.time_interval = time_interval
+
     return widget
 
 
@@ -122,6 +130,13 @@ class Widget(object):
                 self.classes = classes
             except AttributeError:
                 self._classes = classes
+
+        if not hasattr(self, 'html_id'):
+            raise AttributeError('html_id is a required widget attribute')
+        if not hasattr(self, 'content'):
+            raise AttributeError('content is a required widget attribute')
+        if not hasattr(self, 'template'):
+            raise AttributeError('template is a required widget attribute')
 
     def get_updated_content(self):
         return self.content

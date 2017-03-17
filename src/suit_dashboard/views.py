@@ -23,6 +23,7 @@ class DashboardView(TemplateView):
     provide the whole [Bootstrap] breadcrumbs each time.
     """
 
+    template_name = 'suit_dashboard/base.html'
     grid = None
     crumbs = ()
     extra_context = {}
@@ -72,8 +73,6 @@ class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
     Attributes:
         classes (list): list of subclasses generated thtough decorator.
     """
-
-    classes = []
 
     def get_data(self):
         """

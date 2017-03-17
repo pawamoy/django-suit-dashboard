@@ -2,7 +2,7 @@
 Changelog
 =========
 
-2.0.0 (2017-03-15)
+2.0.0 (2017-??-??)
 ==================
 
 The version 2.0.0 adds more flexibility and simplicity of usage
@@ -39,20 +39,20 @@ of particular CSS/JS libraries.
 
 Various fixes and behavior changes.
 
-* Fix bumversion config.
+* Fix bumpversion configuration.
 * Add possibility to give grid as argument to super get.
 * Change persistent to false (unpredictable behavior with cache?).
-* Fix changing url for refreshable items.
+* Fix changing URL for refreshable items.
 * Update docs, decorator now supports args or not, fix case when multiple series in template.
 * Allow lazy initialization for boxes (or not).
-* Change Box behaviour, improve refreshable decorator, implement JSON refresh in box template.
-* Fix urls in README.
+* Change Box behavior, improve refreshable decorator, implement JSON refresh in box template.
+* Fix URLs in README.
 * Configure isort to understand django apps, fix imports order.
 * Add refreshable data view and decorator and display.
 * Fix inconsistent title error.
 * Remove BSD2 link from README.
 * Display item names only if they exist.
-* Change context to kwargs, add context as arg.
+* Change context to kwargs, add context as argument.
 * Fix issue #4.
 * Fix overwriting default value if variable's parent was defined. Also log exceptions in console.
 * Add id for each item in table.
