@@ -9,9 +9,9 @@ The version 2.0.0 adds more flexibility and simplicity of usage
 to the application. It doesn't try to be smart anymore, nor force usage
 of particular CSS/JS libraries.
 
-* Add app settings (currenly just SUIT_DASH_DEFAULT_TIME_INTERVAL).
-* Uncouple from django-suit. The name will remain django-suit-dashboard because
-  is was originally designed to work within django-suit. The application sees
+* Add app settings (currently just SUIT_DASH_DEFAULT_TIME_INTERVAL).
+* Uncouple from Django Suit. The name will remain django-suit-dashboard because
+  it was originally designed to work within Django Suit. The application sees
   if Suit is in use and set the breadcrumbs accordingly (it supports both
   classic and Suit style).
 * A ``suit`` variable is injected into template's context so you can update

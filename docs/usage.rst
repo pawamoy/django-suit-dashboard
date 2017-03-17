@@ -10,9 +10,9 @@ Some real-time widgets and box examples.
     from suit_dashboard.admin import realtime
 
 
-    class CustomRealtimeWidget(Widget):
+    class HomeRealtimeWidget(Widget):
         html_id = 'custom_widget'
-        name = 'Custom Widget'
+        name = 'Home Widget'
         template = 'app/dashboard/display/highcharts_custom.html'
         url_name = 'custom_rtw'
         url_regex = 'realtime/custom_rtw'
@@ -110,10 +110,10 @@ Some real-time widgets and box examples.
                 return 'STOP'
 
 
-    class CustomBox(Box):
+    class HomeBox(Box):
         lorem =
         widgets = [
-            realtime(CustomRealtimeWidget()),
+            realtime(HomeRealtimeWidget()),
             realtime(ProgressiveLoremIpsumWidget())
         ]
 
@@ -140,27 +140,27 @@ Here is an example of AdminSite:
     from django.contrib.admin.sites import AdminSite
     from django.conf.urls import url
 
-    from .views import CustomView
+    from .views import HomeView
 
 
     class DashboardSite(AdminSite):
         def get_urls(self):
             urls = super(DashboardSite , self).get_urls()
             custom_urls = [
-                url(r'^$', self.admin_view(CustomView.as_view()), name='index'),
+                url(r'^$', self.admin_view(HomeView.as_view()), name='index'),
             ]
 
             del urls[0]
             return custom_urls + urls
 
 As you can see, the first URL (leading to the main page of the interface)
-has been replaced by a link to our custom view. It will allow us to add more
-links to more content.
+has been replaced by a link to our custom home view. It will allow us to add
+more links to more content.
 
 .. note::
 
     If you want to keep the original main page, just comment ``del urls[0]``
-    and change the regular experssion of the custom URL (something like
+    and change the regular expression of the custom home URL (something like
     ``r'^dashboard/'``).
     Note that in this case, you will have to add a link to the dashboard
     somehow in the basic main page, or you will need to enter the URL manually
@@ -224,7 +224,7 @@ your own views.
     from suit_dashboard.views import DashboardView
 
 
-    class CustomView(DashboardView):
+    class HomeView(DashboardView):
         pass
 
 This view will render the base template from Django Suit Dashboard. If you
@@ -233,7 +233,7 @@ class variable in your view:
 
 .. code:: python
 
-    class CustomView(DashboardView):
+    class HomeView(DashboardView):
         template_name = 'a/project/template.html'
 
 In the template, you can override or overload the ``dashboard_css`` and
@@ -256,9 +256,9 @@ In the template, you can override or overload the ``dashboard_css`` and
         <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
         <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
       {% endif %}
-      <script src="{% static "bower_components/highcharts/highcharts.js" %}"></script>
-      <script src="{% static "bower_components/highcharts/modules/heatmap.js" %}"></script>
-      <script src="{% static "bower_components/highcharts/highcharts-more.js" %}"></script>
+      <script src="{% static 'bower_components/highcharts/highcharts.js' %}"></script>
+      <script src="{% static 'bower_components/highcharts/modules/heatmap.js' %}"></script>
+      <script src="{% static 'bower_components/highcharts/highcharts-more.js' %}"></script>
     {% endblock %}
 
 .. note::
@@ -266,7 +266,8 @@ In the template, you can override or overload the ``dashboard_css`` and
     As you can see, a ``suit`` variable is available in the context of every
     view based on ``DashboardView``. You can use it to adapt your content for
     Django Suit and classic Django styles. In the example above, we use it
-    to avoid adding Bootstrap a second time
+    to avoid adding Bootstrap a second time, possibly colliding with
+    Django's or Django Suit's own versions of Bootstrap.
 
 
 
@@ -285,19 +286,19 @@ Let's play with an example:
     def get_urls(self):
         urls = super(DashboardSite , self).get_urls()
         custom_urls = [
-            url(r'^$', self.admin_view(CustomView.as_view()), name='index'),
+            url(r'^$', self.admin_view(HomeView.as_view()), name='index'),
             url(r'nest1/^$', self.admin_view(NestView1.as_view()), name='nest1'),
             url(r'nest1/nest2/^$', self.admin_view(NestView2.as_view()), name='nest2'),
         ]
 
     # in your views
 
-    class CustomView(DashboardView):
+    class HomeView(DashboardView):
         template_name = 'a/project/template.html'
-        crumbs = ({'url': 'admin:index', 'name': _('Custom')}, )
+        crumbs = ({'url': 'admin:index', 'name': _('Home')}, )
 
 
-    class NestView1(CustomView):
+    class NestView1(HomeView):
         crumbs = ({'url': 'admin:nest1', 'name': _('Nest 1')}, )
 
 
@@ -308,14 +309,160 @@ Let's play with an example:
 This set of views will automatically render a navigation bar like in the
 following images (classic-styled and suit-styled):
 
-.. image:: https://cloud.githubusercontent.com/assets/3999221/23990246/bed6ea70-0a35-11e7-95d3-bcc5e7904ba3.png
+.. image:: https://cloud.githubusercontent.com/assets/3999221/23994494/7086961c-0a45-11e7-938d-0e173eb1894e.png
     :alt: Classic-style breadcrumbs
-.. image:: https://cloud.githubusercontent.com/assets/3999221/23990258/c4286fd0-0a35-11e7-95eb-c439fdc68997.png
-    :alt: Suit-style breacrumbs
+.. image:: https://cloud.githubusercontent.com/assets/3999221/23994496/727de074-0a45-11e7-8d21-b90127bc5a6b.png
+    :alt: Suit-style breadcrumbs
 
+Each crumb is concatenated to the ones defined in parent views. You can define
+several crumbs in one view:
+
+.. code:: python
+
+    class OtherView(DashboardView):
+        crumbs = (
+            {'url': 'admin:index', 'name': _('Home')},
+            {'url': 'admin:nest1', 'name': _('Nest 1')},
+            {'url': 'admin:nest2', 'name': _('Nest 2')},
+        )
+
+The above code will render the same navigation bar without having used
+views inheritance.
 
 Layout
 ======
+
+Grid, Row, Column
+-----------------
+
+Layout is based on the concept of grids. A grid is composed of rows, each
+row being composed of columns. This allows us to arrange the content on our
+pages. Columns can also contain rows, so it is possible to arrange content
+more precisely. Import the ``Grid``, ``Row`` and ``Column`` classes from
+``suit_dashboard.layout``, and add a ``grid`` variable to your view:
+
+.. code:: python
+
+    from suit_dashboard.layout import Grid, Row, Column
+
+    class HomeView(DashboardView)
+        grid = Grid(
+            Row(Column()),  # default width=12 (maximum)
+            Row(Column(width=6), Column(width=1), Column(width=4)),
+            Row(Column(  # nested rows and columns
+                    Row(Column(width=10), Column(width=2)),
+                    Row(Column(width=4), Column(width=6))
+                width=5),
+                Column(width=6)
+            )
+        )
+
+Use the ``width`` keyword argument to define the width of a column. You can
+use every integer between 1 and 12.
+
+.. warning::
+
+    If the sum of the columns' width **in one row** is superior to 12, the
+    last(s) columns will be pushed below the first ones.
+
+It is not mandatory that the sum of the columns' width in one row is equal to
+12: for example you can have only one column in a row, with width=4. In nested
+rows, the width of the columns will be relative to the parent column's width.
+
+Boxes
+-----
+
+Adding actual content to the columns is done through the ``Box`` and ``Widget``
+classes. A Box contains zero or many widgets and has optional title,
+description, HTML ID, template, and context attributes.
+
+There are two ways to define these attributes in a box:
+
+- first is to instantiate a box with arguments,
+- second is to subclass ``Box`` and use class variables.
+
+Examples:
+
+.. code:: python
+
+    from suit_dashboard.layout import Box
+
+    my_box = Box(html_id='my_box',
+                 title='My box',
+                 description="This is my box, don't touch it.",
+                 context=any_python_object)
+
+    class MyBox(Box):
+        html_id = 'my_box'
+        title = 'My box'
+        description = "This is my box, don't touch it."
+        context = any_python_object
+
+    my_box = MyBox()
+
+If you are using a subclass of ``Box``, you can still use custom parameters at
+instantiation:
+
+.. code:: python
+
+    class MyBox(Box):
+        title = 'My box'
+        template = 'path/to/a/template.html'
+
+    your_box = MyBox(title='Your box', template='path/to/another/template.html)
+
+Most of the time, title, description, HTML ID and template will be static,
+but if you need to define them in a dynamic way (computed when the template is
+rendered), you can do it with properties:
+
+.. code:: python
+
+    class MyBox(Box):
+        title = 'My box'
+
+        @property
+        def template(self):
+            if something:
+                return 'that/template.html'
+            else:
+                return 'rather/this/one.html'
+
+.. warning::
+
+    When using properties, you won't be able to pass custom parameters at
+    box instantiation, because Python does not allow overriding properties
+    of the same name with ``self.attr = attr``. To handle this, Django Suit
+    Dashboard will instead store the passed value in a private attribute with
+    the same name prefixed with an underscore (``self._attr = attr``).
+    You can then write your property like this:
+
+    .. code:: python
+
+        @property
+        def template(self):
+            if hasattr(self, '_template'):
+                return self._template
+
+            if something:
+                return 'that/template.html'
+            else:
+                return 'rather/this/one.html'
+
+    This way you will be able to instantiate the box normally or with custom
+    parameters.
+
+.. note::
+
+    The ``context`` attribute is basically not used by Django Suit Dashboard
+    itself. It is only useful when you specify a custom template and want to
+    pass some values to it. You will be able to use it in your template with
+    ``{{ box.context }}``. For this reason, you can define a ``get_context``
+    method or whatever method to return dynamic context and use it in your
+    template like: ``{{ box.get_context }}``.
+
+You can also pass extra values to a box at instantiation by passing keyword
+arguments: ``box = Box(some_arg='value'`` and in custom template:
+``{{ box.some_arg }}``.
 
 Widgets
 =======
