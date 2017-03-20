@@ -1,6 +1,6 @@
 -r base.txt
 
-pytest
+pytest==3.0.7
 pytest-travis-fold
 pytest-cov
 
