@@ -14,8 +14,8 @@ django-suit-dashboard
 django-suit-dashboard
 suit_dashboard
 Pawamoy
-Django
-Suit
-Dashboard
+django
+suit
+dashboard
 Timothee
 Mazzucotelli
