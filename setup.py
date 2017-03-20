@@ -28,7 +28,7 @@ def read(*names, **kwargs):
 
 setup(
     name='django-suit-dashboard',
-    version='1.0.3',
+    version='2.0.0',
     license='ISC',
     description='Create a dashboard within django admin interface',
     long_description='%s\n%s' % (

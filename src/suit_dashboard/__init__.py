@@ -9,7 +9,7 @@ using a Bootstrap-like layout. You can have nested lines and columns.
 
 from django.conf import settings
 
-__version__ = '1.0.3'
+__version__ = '2.0.0'
 
 
 class AppSettings(object):
