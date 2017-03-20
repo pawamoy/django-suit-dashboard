@@ -30,10 +30,6 @@ Django Suit Dashboard
     :target: https://pyup.io/repos/github/Pawamoy/django-suit-dashboard/
     :alt: Updates
 
-.. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
-    :target: https://gitter.im/Pawamoy/django-suit-dashboard
-    :alt: Join the chat at https://gitter.im/Pawamoy/django-suit-dashboard
-
 .. |version| image:: https://img.shields.io/pypi/v/django-suit-dashboard.svg?style=flat
     :target: https://pypi.python.org/pypi/django-suit-dashboard/
     :alt: PyPI Package latest release
@@ -41,6 +37,10 @@ Django Suit Dashboard
 .. |wheel| image:: https://img.shields.io/pypi/wheel/django-suit-dashboard.svg?style=flat
     :target: https://pypi.python.org/pypi/django-suit-dashboard/
     :alt: PyPI Wheel
+
+.. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
+    :target: https://gitter.im/Pawamoy/django-suit-dashboard
+    :alt: Join the chat at https://gitter.im/Pawamoy/django-suit-dashboard
 
 
 .. end-badges
@@ -70,8 +70,9 @@ Installation
 Documentation
 =============
 
-http://django-suit-dashboard.readthedocs.io/en/latest/
+`On ReadTheDocs`_
 
+.. _`On ReadTheDocs`: http://django-suit-dashboard.readthedocs.io/
 
 Development
 ===========
