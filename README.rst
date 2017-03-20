@@ -45,7 +45,7 @@ Django Suit Dashboard
 
 .. end-badges
 
-Create a dashboard within django-suit admin interface.
+Create a dashboard within Django admin interface.
 
 Screenshot
 ==========

@@ -30,7 +30,7 @@ setup(
     name='django-suit-dashboard',
     version='2.0.0',
     license='ISC',
-    description='Create a dashboard within django admin interface',
+    description='Create a dashboard within Django admin interface',
     long_description='%s\n%s' % (
         re.compile('^.. start-badges.*^.. end-badges', re.M | re.S)
             .sub('', read('README.rst')),
