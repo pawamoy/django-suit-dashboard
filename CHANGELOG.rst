@@ -2,7 +2,7 @@
 Changelog
 =========
 
-2.0.0 (2017-??-??)
+2.0.0 (2017-03-20)
 ==================
 
 The version 2.0.0 adds more flexibility and simplicity of usage
