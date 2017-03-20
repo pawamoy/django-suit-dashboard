@@ -33,8 +33,9 @@ class DashboardView(TemplateView):
         Get crumbs for navigation links.
 
         Returns:
-            tuple: concatenated list of crumbs using these crumbs and the
-                crumbs of the parent classes through __mro__.
+            tuple:
+                concatenated list of crumbs using these crumbs and the
+                crumbs of the parent classes through ``__mro__``.
         """
         crumbs = []
         for cls in reversed(type(self).__mro__):
@@ -68,10 +69,10 @@ class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
     """
     View for refreshable items.
 
-    Keep track of subclasses when generating them with related decorator.
+    Keep track of sub-classes when generating them with related decorator.
 
     Attributes:
-        classes (list): list of subclasses generated thtough decorator.
+        classes (list): list of sub-classes generated through decorator.
     """
 
     def get_data(self):
@@ -85,7 +86,7 @@ class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
 
     def get(self, request, *args, **kwargs):
         """
-        Call to get_ajax.
+        Call to ``get_ajax``.
 
         Args:
             request (): Django's request object.
@@ -93,13 +94,13 @@ class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
             **kwargs (): request kwargs.
 
         Returns:
-            response: get_ajax result.
+            response: ``get_ajax`` result.
         """
         return self.get_ajax(request, *args, **kwargs)
 
     def get_ajax(self, request, *args, **kwargs):
         """
-        Call to render_to_json_response with get_data() as data.
+        Call to ``render_json_response`` with ``get_data()`` as data.
 
         Args:
             request (): Django's request object.
@@ -107,6 +108,6 @@ class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
             **kwargs (): request kwargs.
 
         Returns:
-            response: render_json_response result.
+            response: ``render_json_response`` result.
         """
         return self.render_json_response(self.get_data())

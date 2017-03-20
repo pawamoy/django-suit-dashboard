@@ -825,32 +825,32 @@ Progressive Lorem Ipsum
 API reference
 =============
 
-suit_dashboard
---------------
+``suit_dashboard``
+------------------
 
 .. automodule:: suit_dashboard
     :members:
 
-suit_dashboard.layout
----------------------
+``suit_dashboard.layout``
+-------------------------
 
 .. automodule:: suit_dashboard.layout
     :members:
 
-suit_dashboard.urls
--------------------
+``suit_dashboard.urls``
+-----------------------
 
 .. automodule:: suit_dashboard.urls
     :members:
 
-suit_dashboard.views
---------------------
+``suit_dashboard.views``
+------------------------
 
 .. automodule:: suit_dashboard.views
     :members:
 
-suit_dashboard.widgets
-----------------------
+``suit_dashboard.widgets``
+--------------------------
 
 .. automodule:: suit_dashboard.widgets
     :members:

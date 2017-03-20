@@ -3,9 +3,8 @@
 """
 Django Suit Dashboard package.
 
-Django Suit Dashboard works on top of Suit, an enhanced admin interface for
-Django projects. It lets you define boxes (widgets), and assemble them in your
-pages using a Bootstrap-like layout. You can have nested lines and columns.
+Django Suit Dashboard lets you define widgets, and assemble them in your pages
+using a Bootstrap-like layout. You can have nested lines and columns.
 """
 
 from django.conf import settings
@@ -17,8 +16,9 @@ class AppSettings(object):
     """
     Application settings class.
 
-    This class provides static getters for each setting, and also an instance
-    ``load`` method to load every setting in an instance.
+    This class provides static getters and checkers for each setting, and also
+    an instance ``load`` method to load every setting in an instance. The
+    static ``check`` method will run the checks against all settings.
     """
 
     def __init__(self):
@@ -31,10 +31,12 @@ class AppSettings(object):
 
     @staticmethod
     def check():
+        """Run every check method for settings."""
         AppSettings.check_default_time_interval()
 
     @staticmethod
     def check_default_time_interval():
+        """Check the value of given time interval setting."""
         default_time_interval = AppSettings.get_default_time_interval()
         if not isinstance(default_time_interval, int):
             raise ValueError('DEFAULT_TIME_INTERVAL must be int')

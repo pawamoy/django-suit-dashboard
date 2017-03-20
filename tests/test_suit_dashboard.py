@@ -18,9 +18,9 @@ class MainTestCase(TestCase):
 
     def test_main(self):
         """Main test method."""
-        box = Box(widgets=[Widget()])
+        box = Box(widgets=[Widget(template='_.html')])
         grid = Grid(Row(Column(width=12)))
-        view = DashboardView()
+        view = DashboardView.as_view()
 
         assert box
         assert grid
@@ -37,7 +37,7 @@ class BoxTestCase(TestCase):
         assert 'Box widgets attribute must be a list or tuple' in str(e.value)
 
         with pytest.raises(ValueError) as e:
-            Box(widgets=[Widget(), 0])
+            Box(widgets=[Widget(template='_.html'), 0])
         assert 'All elements of Box must be Widget instances' in str(e.value)
 
     def test_box_kwargs(self):

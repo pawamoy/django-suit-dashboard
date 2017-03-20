@@ -3,8 +3,8 @@
 """
 Widgets module.
 
-This module provides the Widget class and a realtime method, used to register
-a instance of Widget as realtime. The instance has to be registered at
+This module provides the Widget class and a real-time method, used to register
+a instance of Widget as real-time. The instance has to be registered at
 compile time in order for Django to know the URL used to return contents.
 """
 
@@ -131,12 +131,9 @@ class Widget(object):
             except AttributeError:
                 self._classes = classes
 
-        if not hasattr(self, 'html_id'):
-            raise AttributeError('html_id is a required widget attribute')
-        if not hasattr(self, 'content'):
-            raise AttributeError('content is a required widget attribute')
         if not hasattr(self, 'template'):
             raise AttributeError('template is a required widget attribute')
 
     def get_updated_content(self):
+        """Return updated content (for real-time widgets)."""
         return self.content
