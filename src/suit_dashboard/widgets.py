@@ -12,7 +12,7 @@ from __future__ import unicode_literals
 
 from hashlib import sha256
 
-from . import AppSettings
+from .apps import AppSettings
 from .views import PartialResponse
 
 REALTIME_WIDGETS = []
