@@ -13,7 +13,7 @@ from .urls import get_realtime_urls
 from .views import DashboardView, PartialResponse
 from .widgets import Widget, realtime
 
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 __all__ = ['Box', 'Column', 'Grid', 'Row', 'get_realtime_urls', 'realtime',
            'DashboardView', 'PartialResponse', 'Widget', 'AppSettings']
 
