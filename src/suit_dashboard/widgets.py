@@ -13,7 +13,6 @@ from __future__ import unicode_literals
 from hashlib import sha256
 
 from .apps import AppSettings
-from .views import PartialResponse
 
 REALTIME_WIDGETS = []
 
@@ -66,15 +65,24 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
         else:
             time_interval = AppSettings.get_default_time_interval()
 
-    class GeneratedView(PartialResponse):
+    from django.views.generic import View
+    from braces.views import AjaxResponseMixin, JSONResponseMixin
+
+    class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
         def get_data(self):
             return widget.get_updated_content()
 
-    GeneratedView.url_name = url_name
-    GeneratedView.url_regex = url_regex
-    GeneratedView.time_interval = time_interval
+        def get(self, request, *args, **kwargs):
+            return self.get_ajax(request, *args, **kwargs)
 
-    REALTIME_WIDGETS.append(GeneratedView)
+        def get_ajax(self, request, *args, **kwargs):
+            return self.render_json_response(self.get_data())
+
+    PartialResponse.url_name = url_name
+    PartialResponse.url_regex = url_regex
+    PartialResponse.time_interval = time_interval
+
+    REALTIME_WIDGETS.append(PartialResponse)
 
     if not hasattr(widget, 'url_name'):
         widget.url_name = url_name

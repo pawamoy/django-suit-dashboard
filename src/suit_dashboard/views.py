@@ -9,9 +9,7 @@ DashboardView for classic views and RefreshableDataView for refreshable items.
 from __future__ import unicode_literals
 
 from django.conf import settings
-from django.views.generic import TemplateView, View
-
-from braces.views import AjaxResponseMixin, JSONResponseMixin
+from django.views.generic import TemplateView
 
 
 class DashboardView(TemplateView):
@@ -63,51 +61,3 @@ class DashboardView(TemplateView):
         if context.get('dashboard_grid', None) is None and self.grid:
             context['dashboard_grid'] = self.grid
         return self.render_to_response(context)
-
-
-class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
-    """
-    View for refreshable items.
-
-    Keep track of sub-classes when generating them with related decorator.
-
-    Attributes:
-        classes (list): list of sub-classes generated through decorator.
-    """
-
-    def get_data(self):
-        """
-        Overwrite this function to return your refreshable data.
-
-        Returns:
-            dict: JSON-convertible data yo be used in your item/box.
-        """
-        return {}
-
-    def get(self, request, *args, **kwargs):
-        """
-        Call to ``get_ajax``.
-
-        Args:
-            request (): Django's request object.
-            *args (): request args.
-            **kwargs (): request kwargs.
-
-        Returns:
-            response: ``get_ajax`` result.
-        """
-        return self.get_ajax(request, *args, **kwargs)
-
-    def get_ajax(self, request, *args, **kwargs):
-        """
-        Call to ``render_json_response`` with ``get_data()`` as data.
-
-        Args:
-            request (): Django's request object.
-            *args (): request args.
-            **kwargs (): request kwargs.
-
-        Returns:
-            response: ``render_json_response`` result.
-        """
-        return self.render_json_response(self.get_data())
