@@ -2,6 +2,13 @@
 Changelog
 =========
 
+2.0.1 (2017-03-29)
+==================
+
+* All objects are now importable directly from ``suit_dashboard``.
+* Moved application settings into an ``apps`` module.
+
+
 2.0.0 (2017-03-20)
 ==================
 
