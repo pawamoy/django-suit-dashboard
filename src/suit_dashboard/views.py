@@ -21,6 +21,7 @@ class DashboardView(TemplateView):
     provide the whole [Bootstrap] breadcrumbs each time.
     """
 
+    title = 'Suit Dashboard'
     template_name = 'suit_dashboard/base.html'
     grid = None
     crumbs = ()
@@ -57,6 +58,7 @@ class DashboardView(TemplateView):
         context = self.get_context_data(**kwargs)
         context.update(self.extra_context)
         context['crumbs'] = self.get_crumbs()
+        context['title'] = self.title
         context['suit'] = 'suit' in settings.INSTALLED_APPS
         if context.get('dashboard_grid', None) is None and self.grid:
             context['dashboard_grid'] = self.grid
