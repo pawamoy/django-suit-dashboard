@@ -19,3 +19,5 @@ suit
 dashboard
 Timothee
 Mazzucotelli
+Django
+django
