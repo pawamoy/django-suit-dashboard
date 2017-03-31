@@ -544,6 +544,104 @@ Which results in:
 Examples
 ========
 
+Application list box and view
+-----------------------------
+
+There is a way to get back the project's application list if you changed the
+admin index page. You can surcharge the ``get`` method of the view to return
+the result of ``django.contrib.admin.site.get_app_list(request)``. You can even
+pass it to a box if you want to put other things on the page within a layout.
+
+.. code:: python
+
+    from suit_dashboard import Box, Column, DashboardView, Grid, Row
+
+
+    class AppListBox(Box):
+        template = 'app/dashboard/app_index.html'
+
+        @property
+        def context(self):
+            from django.contrib import admin
+            return {'app_list': admin.site.get_app_list(self.request)}
+
+
+    class SomeView(DashboardView):
+        def get(self, request, *args, **kwargs):
+            self.grid = Grid(Row(Column(AppListBox(request=request))))
+            return super(SomeView, self).get(request, *args, **kwargs)
+
+Here is the code to render it in HTML, handling both Suit and classic styles:
+
+.. code:: htmldjango
+
+    {% load i18n %}
+    {% with app_list=box.context.app_list %}
+      {% if app_list %}
+        {% if not suit %}
+          {% for app in app_list %}
+            <div class="app-{{ app.app_label }} module">
+            <table>
+            <caption>
+              <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ app.name }}</a>
+            </caption>
+            {% for model in app.models %}
+              <tr class="model-{{ model.object_name|lower }}">
+                {% if model.admin_url %}
+                  <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+                {% else %}
+                  <th scope="row">{{ model.name }}</th>
+                {% endif %}
+
+                {% if model.add_url %}
+                  <td><a href="{{ model.add_url }}" class="addlink">{% trans 'Add' %}</a></td>
+                {% else %}
+                  <td>&nbsp;</td>
+                {% endif %}
+
+                {% if model.admin_url %}
+                  <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+                {% else %}
+                  <td>&nbsp;</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+            </table>
+            </div>
+          {% endfor %}
+        {% else %}
+          {% for app in app_list %}
+            <div class="module">
+              <table class="table-overview applist" summary="{% blocktrans with name=app.name %}Models available in the {{ name }} application.{% endblocktrans %}">
+                <caption><a href="{{ app.app_url }}" class="section">{% trans app.name %}</a></caption>
+                {% for model in app.models %}
+                  <tr>
+                    <th scope="row">{{ model.name }}</th>
+                    {% if model.admin_url %}
+                      <td>
+                        <a href="{{ model.admin_url }}" class="changelink icon">{% trans 'Change' %}</a>
+                      </td>
+                    {% else %}
+                      <td>&nbsp;</td>
+                    {% endif %}
+
+                    {% if model.add_url %}
+                      <td><a href="{{ model.add_url }}" class="addlink icon"><i class="icon-plus-sign icon-alpha75"></i>{% trans 'Add' %}
+                      </a></td>
+                    {% else %}
+                      <td>&nbsp;</td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+              </table>
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% else %}
+        <p>{% trans "You don't have permission to edit anything." %}</p>
+      {% endif %}
+    {% endwith %}
+
 Columns and simple widget render
 --------------------------------
 
