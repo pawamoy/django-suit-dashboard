@@ -2,6 +2,13 @@
 Changelog
 =========
 
+2.0.2 (2017-04-03)
+==================
+
+* Add title option to views.
+* Don't display crumbs if none.
+* Move PartialResponse into realtime function to avoid AppsNotReady (fix #30).
+
 2.0.1 (2017-03-29)
 ==================
 
