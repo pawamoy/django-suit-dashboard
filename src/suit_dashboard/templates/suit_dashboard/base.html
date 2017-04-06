@@ -7,12 +7,16 @@
   {% block breadcrumbs %}
     {% if crumbs %}
       {% if suit %}
-        <ul class="breadcrumbs">
+        <ul class="breadcrumb">
           {% for crumb in crumbs %}
-            <li {% if forloop.last %}class="active"{% endif %}>
-              {% if not forloop.first %}<span class="divider">&rsaquo;</span>{% endif %}
-              <a {% if not forloop.last and crumb.url %}href="{% url crumb.url %}"{% endif %}>{{ crumb.name }}</a>
-            </li>
+            {% if forloop.last %}
+              <li class="active">{{ crumb.name }}</li>
+            {% else %}
+              <li>
+                <a {% if crumb.url %}href="{% url crumb.url %}"{% endif %}>{{ crumb.name }}</a>
+                <span class="divider">&raquo;</span>
+              </li>
+            {% endif %}
           {% endfor %}
         </ul>
       {% else %}
@@ -21,9 +25,8 @@
             {% if forloop.last %}
               {{ crumb.name }}
             {% else %}
-              <a href="{% url crumb.url %}">{{ crumb.name }}</a>
+              <a href="{% url crumb.url %}">{{ crumb.name }}</a> &rsaquo;
             {% endif %}
-            {% if not forloop.last %}&rsaquo;{% endif %}
           {% endfor %}
         </div>
       {% endif %}
