@@ -102,7 +102,8 @@ class Widget(object):
                  name=None,
                  content=None,
                  template=None,
-                 classes=None):
+                 classes=None,
+                 **kwargs):
         """
         Init method.
 
@@ -141,6 +142,9 @@ class Widget(object):
 
         if not hasattr(self, 'template'):
             raise AttributeError('template is a required widget attribute')
+
+        for kw, arg in kwargs.items():
+            setattr(self, kw, arg)
 
     def get_updated_content(self):
         """Return updated content (for real-time widgets)."""
