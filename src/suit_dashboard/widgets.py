@@ -41,7 +41,7 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
         if getattr(widget, 'url_name', None) is not None:
             url_name = widget.url_name
         else:
-            url_name = widget.__name__
+            url_name = widget.__class__.__name__
 
     if url_name in [w.url_name for w in REALTIME_WIDGETS]:
         raise ValueError('URL name %s is already used by another '
