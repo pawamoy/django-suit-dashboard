@@ -15,6 +15,6 @@ from .widgets import Widget, realtime
 
 __version__ = '2.0.2'
 __all__ = ['Box', 'Column', 'Grid', 'Row', 'get_realtime_urls', 'realtime',
-           'DashboardView', 'PartialResponse', 'Widget', 'AppSettings']
+           'DashboardView', 'Widget', 'AppSettings']
 
 default_app_config = 'suit_dashboard.apps.SuitDashboardConfig'
