@@ -13,7 +13,7 @@ from .urls import get_realtime_urls
 from .views import DashboardView
 from .widgets import Widget, realtime
 
-__version__ = '2.0.2'
+__version__ = '2.0.3'
 __all__ = ['Box', 'Column', 'Grid', 'Row', 'get_realtime_urls', 'realtime',
            'DashboardView', 'Widget', 'AppSettings']
 
