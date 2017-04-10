@@ -2,6 +2,16 @@
 Changelog
 =========
 
+2.0.3 (2017-04-10)
+==================
+
+* Use instance's crumbs.
+* As for boxes, accept keyword arguments to set in widgets.
+* Fix real-time setting default ``url_name``.
+* Remove ``PartialResponse`` from ``__init__.__all__``.
+* Update breadcrumbs to strictly match classic and Suit's styles.
+
+
 2.0.2 (2017-04-03)
 ==================
 
