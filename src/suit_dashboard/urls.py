@@ -3,6 +3,7 @@
 """URL utility to get the URLs for the declared real-time widgets."""
 
 from __future__ import unicode_literals
+
 from django.conf.urls import url
 
 

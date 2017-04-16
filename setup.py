@@ -69,7 +69,7 @@ setup(
         'django-suit-dashboard',
     ],
     install_requires=[
-        'django-braces'
+        'django-braces', 'django-app-settings'
     ],
     extras_require={
         # eg:

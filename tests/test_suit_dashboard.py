@@ -26,6 +26,12 @@ class MainTestCase(TestCase):
         assert grid
         assert view
 
+    def test_settings(self):
+        from suit_dashboard.apps import AppSettings
+        assert AppSettings.get_default_time_interval() == 500
+        appsettings = AppSettings()
+        assert appsettings.default_time_interval == 500
+
 
 class BoxTestCase(TestCase):
     """Box test case."""
