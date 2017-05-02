@@ -3,7 +3,6 @@
 """Main test script."""
 
 
-
 from django.test import TestCase
 
 import suit_dashboard
@@ -14,12 +13,12 @@ class MainTestCase(TestCase):
 
     def setUp(self):
         """Setup method."""
-        pass
+        self.package = suit_dashboard
 
     def test_main(self):
         """Main test method."""
-        assert suit_dashboard
+        assert self.package
 
     def tearDown(self):
         """Tear down method."""
-        pass
+        del self.package
