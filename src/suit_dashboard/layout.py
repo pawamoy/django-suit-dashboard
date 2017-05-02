@@ -103,7 +103,7 @@ class Box(object):
             context (dict): additional context to pass to the box.
         """
         if widgets is not None:
-            if not (isinstance(widgets, list) or isinstance(widgets, tuple)):
+            if not isinstance(widgets, (list, tuple)):
                 raise AttributeError('Box widgets attribute '
                                      'must be a list or tuple')
             if not all([isinstance(e, Widget) for e in widgets]):

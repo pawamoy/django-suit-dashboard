@@ -68,6 +68,7 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
     from django.views.generic import View
     from braces.views import AjaxResponseMixin, JSONResponseMixin
 
+    # pylama:ignore=C0111,R0201
     class PartialResponse(JSONResponseMixin, AjaxResponseMixin, View):
         def get_data(self):
             return widget.get_updated_content()
