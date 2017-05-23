@@ -47,6 +47,25 @@ Django Suit Dashboard
 
 Create a dashboard within Django admin interface.
 
+This application was originally designed to work within `Django Suit`_
+(hence the name), but it is now decoupled from it, you can use it without Suit.
+
+Here is a quick explanation of how it works:
+
+- you write a base template to add CSS/Javascript libraries (optional)
+- you write a custom AdminSite to override default URLs and/or add others
+- you write the corresponding views, inheriting from DashboardView
+- each view render the base template (or an extended one) with a grid in
+  the context (layout of rows and columns)
+- columns can contain boxes of content (visual separation on the page)
+- boxes can contain widgets, for which you write the HTML/CSS/JS
+
+So basically django-suit-dashboard does not do much, it just provides a way
+to create a dashboard in admin interface without touching too much to HTML
+(which not everyone will approve).
+
+.. _`Django Suit`: https://github.com/darklow/django-suit
+
 Screenshot
 ==========
 
@@ -73,6 +92,23 @@ Documentation
 `On ReadTheDocs`_
 
 .. _`On ReadTheDocs`: http://django-suit-dashboard.readthedocs.io/
+
+Demo project
+============
+
+*Coming soon.*
+
+Applications using Suit-Dashboard
+=================================
+
+Here is a list of Django Apps using Suit-Dashboard. You might find some
+interesting ways of using it.
+
+- `django-cerberus-ac`_: role-based access control for Django (early development)
+- `django-meerkat`_: security audit application for Django sites (work in progress)
+
+.. _`django-cerberus-ac`: https://github.com/Deavelleye/dj-CerberusAC
+.. _`django-meerkat`: https://github.com/Pawamoy/django-meerkat
 
 Development
 ===========
