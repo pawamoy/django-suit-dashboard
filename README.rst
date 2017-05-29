@@ -52,7 +52,7 @@ This application was originally designed to work within `Django Suit`_
 
 Here is a quick explanation of how it works:
 
-- you write a base template to add CSS/Javascript libraries (optional)
+- you write a base template to add CSS/JavaScript libraries (optional)
 - you write a custom AdminSite to override default URLs and/or add others
 - you write the corresponding views, inheriting from DashboardView
 - each view render the base template (or an extended one) with a grid in
@@ -96,7 +96,20 @@ Documentation
 Demo project
 ============
 
-*Coming soon.*
+Follow these instructions to run the demo locally:
+
+.. code:: bash
+
+  git clone https://github.com/Pawamoy/suit-dashboard-demo
+  cd suit-dashboard-demo
+  ./install.sh
+  ^C (Ctrl-c)
+  ./run.sh [with-suit]  # any non-empty arg will do
+
+Connect to the admin interface with your system username and password `admin_password`.
+
+Don't hesitate to send me Pull Requests to share your boxes and widgets,
+I will add them into the demo pages!
 
 Applications using Suit-Dashboard
 =================================

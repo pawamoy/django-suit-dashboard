@@ -1,8 +1,0 @@
-<div id="{{ widget.html_id }}"  class="box-widget widget-list">
-  {% if widget.name %}<h2 class="box-widget-name">{{ widget.name }}</h2>{% endif %}
-  <ul class="list {{ widget.classes }}">
-    {% for li in widget.content %}
-      <li class="box-widget-content">{{ li|linebreaksbr }}</li>
-    {% endfor %}
-  </ul>
-</div>

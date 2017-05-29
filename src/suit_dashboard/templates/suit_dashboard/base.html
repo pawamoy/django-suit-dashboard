@@ -40,7 +40,8 @@
   {% block dashboard_css %}{% endblock %}
 {% endblock %}
 
-{% block extrajs %}
+{# We cannot use block extrajs because it exists only in Django Suit #}
+{% block footer %}
   {{ block.super }}
   {% block dashboard_js %}{% endblock %}
 {% endblock %}

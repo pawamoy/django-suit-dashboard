@@ -2,6 +2,15 @@
 Changelog
 =========
 
+2.0.4 (2017-05-29)
+==================
+
+* Fix `dashboard_js` block not being added while rendering when not using Django Suit.
+* Add demo project.
+* Add diagram in documentation.
+* Remove display templates (if you were using them, please copy them
+  back from the docs into your project).
+
 2.0.3 (2017-04-10)
 ==================
 

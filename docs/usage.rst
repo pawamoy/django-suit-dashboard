@@ -2,9 +2,23 @@
 Usage
 =====
 
+To understand how Django Suit Dashboard works, take a look at this diagram:
+
+.. image:: https://cloud.githubusercontent.com/assets/3999221/26557523/594ead6c-44a2-11e7-85f2-b157dfe42e6e.png
+    :alt: Suit Dashboard Structure
+
 First you have to do a bit of setup. Then you will be able to write views
 containing grids of content. A grid is composed of nested rows and columns,
 and a column can contain boxes. Then, each box contains zero or more widgets.
+
+Basically, your dashboard will look like the following images (with and without Django Suit):
+
+.. image:: https://cloud.githubusercontent.com/assets/3999221/26557556/a8f4dea4-44a2-11e7-928b-802ce312c1c8.png
+    :alt: Suit Dashboard with sidebar
+
+.. image:: https://cloud.githubusercontent.com/assets/3999221/26557549/a02f414c-44a2-11e7-9bea-893b02642f44.png
+    :alt: Suit Dashboard without sidebar
+
 
 - Setup_
 - Views_
