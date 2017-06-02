@@ -63,7 +63,7 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
         if getattr(widget, 'time_interval', None) is not None:
             time_interval = widget.time_interval
         else:
-            time_interval = AppSettings.get_default_time_interval()
+            time_interval = AppSettings.default_time_interval.get()
 
     from django.views.generic import View
     from braces.views import AjaxResponseMixin, JSONResponseMixin

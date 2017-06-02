@@ -28,7 +28,7 @@ class MainTestCase(TestCase):
 
     def test_settings(self):
         from suit_dashboard.apps import AppSettings
-        assert AppSettings.get_default_time_interval() == 500
+        assert AppSettings.default_time_interval.get() == 500
         appsettings = AppSettings()
         assert appsettings.default_time_interval == 500
 
