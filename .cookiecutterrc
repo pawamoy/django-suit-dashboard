@@ -34,6 +34,8 @@ default_context:
     package_name:                    'suit_dashboard'
     project_name:                    'Django Suit Dashboard'
     project_short_description:       'Create a dashboard within django-suit admin interface'
+    prospector:                      'yes'
+    pylama:                          'no'
     python_versions:                 '2.7,3.4,3.5,3.6,3.7-dev,pypy'
     pyup:                            'yes'
     release_date:                    '2016-04-19'
