@@ -26,7 +26,7 @@ class AppSettings(aps.AppSettings):
     - default_time_interval (int)
     """
 
-    default_time_interval = aps.PositiveIntSetting(default=1000)
+    default_time_interval = aps.PositiveIntegerSetting(default=1000)
 
     # pylama:ignore=C0111
     class Meta:
