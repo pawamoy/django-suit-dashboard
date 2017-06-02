@@ -3,7 +3,7 @@ language: python
 branches:
   except: [cookiecutter]
 cache: pip
-matrix:
+jobs:
   include:
   - {stage: check, python: '3.5', env: TOX_ENV=setup}
   - {stage: check, python: '3.5', env: TOX_ENV=safety}
