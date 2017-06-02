@@ -1,2 +1,2 @@
-django-app-settings==0.2.4
+django-app-settings==0.2.5
 django-braces==1.11.0
