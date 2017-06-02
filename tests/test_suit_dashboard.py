@@ -7,7 +7,6 @@ from django.test import TestCase
 
 import pytest
 
-
 from suit_dashboard.layout import Box, Column, Grid, Row
 from suit_dashboard.views import DashboardView
 from suit_dashboard.widgets import Widget
