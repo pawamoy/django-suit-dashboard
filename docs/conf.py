@@ -32,6 +32,12 @@ extensions = [
     'sphinx.ext.viewcode',
 ]
 
+autodoc_default_flags = [
+    'members',
+    'special-members',
+    'show-inheritance'
+]
+
 if os.getenv('SPELLCHECK'):
     extensions += 'sphinxcontrib.spelling',
     spelling_show_suggestions = True
@@ -58,7 +64,6 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 if not on_rtd:  # only set the theme if we're building docs locally
     html_theme = 'sphinx_rtd_theme'
 
-html_use_smartypants = True
 html_last_updated_fmt = '%b %d, %Y'
 html_split_index = False
 html_sidebars = {
@@ -66,6 +71,17 @@ html_sidebars = {
 }
 html_short_title = '%s-%s' % (project, version)
 
+html_context = {
+    'extra_css_files': [
+        '_static/extra.css',
+    ],
+}
+
+html_static_path = [
+    "extra.css",
+]
+
 napoleon_use_ivar = True
 napoleon_use_rtype = False
 napoleon_use_param = False
+suppress_warnings = ["image.nonlocal_uri"]
