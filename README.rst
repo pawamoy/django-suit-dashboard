@@ -31,11 +31,11 @@ Django Suit Dashboard
     :alt: Updates
 
 .. |version| image:: https://img.shields.io/pypi/v/django-suit-dashboard.svg?style=flat
-    :target: https://pypi.python.org/pypi/django-suit-dashboard/
+    :target: https://pypi.org/project/django-suit-dashboard/
     :alt: PyPI Package latest release
 
 .. |wheel| image:: https://img.shields.io/pypi/wheel/django-suit-dashboard.svg?style=flat
-    :target: https://pypi.python.org/pypi/django-suit-dashboard/
+    :target: https://pypi.org/project/django-suit-dashboard/
     :alt: PyPI Wheel
 
 .. |gitter| image:: https://badges.gitter.im/Pawamoy/django-suit-dashboard.svg
