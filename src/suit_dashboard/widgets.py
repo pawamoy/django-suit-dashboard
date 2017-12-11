@@ -14,6 +14,8 @@ from hashlib import sha256
 
 from .apps import AppSettings
 
+app_settings = AppSettings()
+
 REALTIME_WIDGETS = []
 
 
@@ -63,7 +65,7 @@ def realtime(widget, url_name=None, url_regex=None, time_interval=None):
         if getattr(widget, 'time_interval', None) is not None:
             time_interval = widget.time_interval
         else:
-            time_interval = AppSettings.default_time_interval.get()
+            time_interval = app_settings.default_time_interval
 
     from django.views.generic import View
     from braces.views import AjaxResponseMixin, JSONResponseMixin

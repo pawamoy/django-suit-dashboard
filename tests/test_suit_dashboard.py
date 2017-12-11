@@ -7,9 +7,12 @@ from django.test import TestCase
 
 import pytest
 
+from suit_dashboard.apps import AppSettings
 from suit_dashboard.layout import Box, Column, Grid, Row
 from suit_dashboard.views import DashboardView
 from suit_dashboard.widgets import Widget
+
+app_settings = AppSettings()
 
 
 class MainTestCase(TestCase):
@@ -24,12 +27,6 @@ class MainTestCase(TestCase):
         assert box
         assert grid
         assert view
-
-    def test_settings(self):
-        from suit_dashboard.apps import AppSettings
-        assert AppSettings.default_time_interval.get() == 500
-        appsettings = AppSettings()
-        assert appsettings.default_time_interval == 500
 
 
 class BoxTestCase(TestCase):
