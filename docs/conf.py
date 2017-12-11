@@ -49,7 +49,7 @@ project = u'Django Suit Dashboard'
 year = '2017'
 author = u'Timothee Mazzucotelli'
 copyright = '{0}, {1}'.format(year, author)
-version = release = u'2.0.5'
+version = release = u'2.0.6'
 
 pygments_style = 'trac'
 templates_path = ['.']
