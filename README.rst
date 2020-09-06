@@ -4,8 +4,8 @@ Django Suit Dashboard
 
 .. start-badges
 
-:warning: Not maintained!
-=========================
+>:warning: Not maintained!
+===========================
 
 This project is not maintained anymore.
 
