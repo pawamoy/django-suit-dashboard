@@ -4,6 +4,24 @@ Django Suit Dashboard
 
 .. start-badges
 
+:warning: Not maintained!
+=========================
+
+This project is not maintained anymore.
+
+The reason is that it never got many users,
+or even no users at all
+(based on Libraries.io and GitHub data),
+maybe because the docs were hard to read.
+
+I'm also not happy with it: it mixes many languages
+at once with a deep layered architecture.
+That's not easy to play with.
+
+Anyway, if you want to take over maintainership,
+drop me a message at pawamoy@pm.me,
+I can transfer the project or add contributors.
+
 
 |travis|
 |codacygrade|
