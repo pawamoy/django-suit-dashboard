@@ -9,8 +9,7 @@ Django Suit Dashboard
 
 This project is not maintained anymore.
 
-The reason is that it never got many users,
-or even no users at all
+The reason is that it never got many users
 (based on Libraries.io and GitHub data),
 maybe because the docs were hard to read.
 
